@@ -6,26 +6,21 @@
 
 需要配合相关的后台模板使用。（暂时未实现）
 
-## Development server
+## 使用方式
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+使用该模板后，需要修改以下内容使其符合实际需求。
 
-## Code scaffolding
+### 项目名
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- 将 **package.json** 中的项目名 _angular-dashboard-template_ 修改为实际项目名。
+- 将 **angular.json** 中的 _angular-dashboard-template_ 修改为实际项目名。建议直接使用编辑器（如 VSCode）的替换功能。
+- 将 **src/environments/environment.ts** 和 **src/environments/environment.prod.ts** 中的 _appName_ 修改为项目的展示名。
+- 将 **src/index.html** 中的 _title_ 标签修改为项目的展示名。
 
-## Build
+### 接口地址
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- 将 **proxy.config.json** 中的接口地址修改为实际开发的接口地址。
 
-## Running unit tests
+### 网站图标
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- 将 **src/favicon.ico** 修改为实际项目的图标
