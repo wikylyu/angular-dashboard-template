@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  nz-breadcrumb {
+    margin: 8px 0;
+  }
+
+  div.content {
+    padding: 10px;
+    background: #fff;
+    overflow-y: auto;
+    height: 100%;
+
+    ::ng-deep div.actionbar {
+      margin-bottom: 10px;
+    }
+  }
+}

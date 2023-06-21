@@ -1,0 +1,16 @@
+:host {
+  display: inline-block;
+
+  //   background-color: #BDBDBD;
+
+  cursor: pointer;
+
+  div.img {
+    // width: 200px;
+    // height: 200px;
+    // background-color: #bdbdbd;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}

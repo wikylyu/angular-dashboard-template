@@ -1,0 +1,44 @@
+<nz-layout id="root">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo" (click)="logoClick()">
+      <!-- <img src="../../../../assets/image/icon.png" style="width: 100%" /> -->
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <app-sidemenu
+        *ngIf="self?.is_superuser"
+        title="账号管理"
+        icon="usergroup-add"
+        baseURL="/dashboard/admin"
+      >
+        <app-sidemenu-item
+          title="管理员账号"
+          link="/staffs"
+        ></app-sidemenu-item>
+        <app-sidemenu-item
+          title="登录记录"
+          link="/staff/tokens"
+        ></app-sidemenu-item>
+      </app-sidemenu>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <span
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"
+      ></span>
+
+      <h1>{{ headerTitle }}</h1>
+
+      <div class="right">
+        <app-staff-avatar-menu></app-staff-avatar-menu>
+      </div>
+    </nz-header>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer>永康市十美信息科技有限公司 ©2023</nz-footer>
+  </nz-layout>
+</nz-layout>

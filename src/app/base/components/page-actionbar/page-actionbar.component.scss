@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 5px;
+  div.layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  div.spacer {
+    flex: 1;
+    min-width: 20px;
+  }
+}

@@ -1,0 +1,7 @@
+<ng-container *ngIf="datetime">
+  <span *ngIf="datetime && datetime.getTime() > -639100800000"
+    >{{ datetime.getFullYear() }}/{{
+      datetime.getMonth() + 1 | number : "2.0-2"
+    }}/{{ datetime.getDate() | number : "2.0-2" }}
+  </span>
+</ng-container>

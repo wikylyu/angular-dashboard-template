@@ -1,0 +1,108 @@
+<app-page-content [breadcrumbs]="['账号管理', '管理员账号']">
+  <app-page-actionbar>
+    <app-input
+      label="关键词"
+      [(ngModel)]="query"
+      (enter)="search()"
+    ></app-input>
+    <app-admin-staff-status-select
+      [(ngModel)]="queryStatus"
+    ></app-admin-staff-status-select>
+    <app-search-button
+      (search)="search()"
+      [loading]="loading"
+    ></app-search-button>
+    <ng-template #right>
+      <button nz-button>新建</button>
+    </ng-template>
+  </app-page-actionbar>
+  <nz-table
+    nzBordered
+    #basicTable
+    [nzData]="staffs"
+    [nzTotal]="total"
+    [(nzPageIndex)]="page"
+    [(nzPageSize)]="pageSize"
+    [nzLoading]="loading"
+    [nzShowSizeChanger]="true"
+    [nzFrontPagination]="false"
+    nzSize="small"
+    (nzPageIndexChange)="onPageChange()"
+    (nzPageSizeChange)="onPageChange()"
+    [nzShowTotal]="totalTemplate"
+  >
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>用户名</th>
+        <th>姓名</th>
+        <th>手机号</th>
+        <th>邮箱</th>
+        <th>状态</th>
+        <th>创建人</th>
+        <th>创建时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data; let i = index">
+        <td>{{ (page - 1) * pageSize + i + 1 }}</td>
+        <td>
+          {{ data.username }}
+          <span
+            nz-icon
+            nzType="star"
+            nzTheme="twotone"
+            *ngIf="data.is_superuser"
+          ></span>
+        </td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.phone }}</td>
+        <td>{{ data.email }}</td>
+        <td>
+          <app-admin-staff-status
+            [status]="data.status"
+          ></app-admin-staff-status>
+        </td>
+        <td>
+          <app-admin-staff-label [id]="data.created_by"></app-admin-staff-label>
+        </td>
+        <td>
+          <app-datetime [text]="data.created_time"></app-datetime>
+        </td>
+        <td>
+          <a nz-dropdown [nzDropdownMenu]="menu">
+            <i nz-icon nzType="menu" nzTheme="outline"></i>
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu style="min-width: 100px">
+              <li nz-menu-item (click)="showUpdateAdminStaffModal(data)">
+                编辑
+              </li>
+              <li
+                nz-menu-item
+                nzDanger
+                (click)="showUpdateAdminStaffPasswordModal(data)"
+              >
+                重置密码
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <ng-template #totalTemplate let-range="range" let-total>
+    总计：{{ total }}
+  </ng-template>
+</app-page-content>
+
+<app-update-admin-staff-modal
+  [(isVisible)]="isUpdateAdminStaffModalVisible"
+  [data]="updateAdminStaffData"
+  (update)="findAdminStaffs()"
+></app-update-admin-staff-modal>
+<app-update-admin-staff-password-modal
+  [(isVisible)]="isUpdateAdminStaffPasswordModalVisible"
+  [data]="updateAdminStaffPasswordData"
+></app-update-admin-staff-password-modal>

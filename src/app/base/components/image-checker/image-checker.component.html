@@ -1,0 +1,13 @@
+<canvas
+  #canvas
+  [attr.width]="width"
+  [attr.height]="height"
+  (click)="click($event)"
+>
+</canvas>
+<nz-badge
+  nzStandalone
+  *ngFor="let dot of dots; let i = index"
+  [nzCount]="i + 1"
+  [ngStyle]="{ left: dot.x - 10 + 'px', top: dot.y - 10 + 'px' }"
+></nz-badge>

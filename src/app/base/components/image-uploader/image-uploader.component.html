@@ -1,0 +1,47 @@
+<div style="position: relative">
+  <nz-spin nzTip="上传中..." [nzSpinning]="loading">
+    <div
+      (click)="!loading ? picker.click() : null"
+      class="img"
+      [ngStyle]="imgStyle"
+    ></div>
+  </nz-spin>
+
+  <i
+    nz-icon
+    nzType="close"
+    nzTheme="outline"
+    style="right: 5px; top: 5px; position: absolute"
+    (click)="clear()"
+  ></i>
+</div>
+
+<input
+  #picker
+  type="file"
+  accept="image/*"
+  hidden
+  (change)="onFileChange($event)"
+/>
+
+<nz-modal
+  [(nzVisible)]="isModalVisible"
+  nzTitle="图片裁剪"
+  (nzOnCancel)="close()"
+  [nzStyle]="{ width: '460px' }"
+  (nzOnOk)="crop()"
+>
+  <ng-template nzModalContent>
+    <image-cropper
+      [imageFile]="rawFile"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="ratio"
+      format="png"
+      [resizeToWidth]="256"
+      [imageQuality]="100"
+      [cropperMinWidth]="200"
+      [cropperMinHeight]="200"
+      (imageCropped)="imageCropped($event)"
+    ></image-cropper>
+  </ng-template>
+</nz-modal>

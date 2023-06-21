@@ -1,0 +1,27 @@
+<nz-avatar
+  [nzText]="data.name ? data.name[0] : ''"
+  style="color: #f56a00; background-color: #fde3cf"
+  nz-dropdown
+  [nzDropdownMenu]="menu"
+></nz-avatar>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <li nz-menu-item (click)="showUpdateSelfProfileModal()">个人信息</li>
+    <li nz-menu-item (click)="showUpdateSelfPasswordModal()">修改密码</li>
+    <li nz-menu-item (click)="showSettingModal()">设置</li>
+
+    <li nz-menu-divider></li>
+    <li nz-menu-item nzDanger (click)="logout()">注销</li>
+  </ul>
+</nz-dropdown-menu>
+
+<app-update-self-profile-modal
+  [(isVisible)]="isUpdateSelfProfileModalVisible"
+  [data]="updateSelfProfileData"
+  (update)="onUpdate($event)"
+></app-update-self-profile-modal>
+
+<app-update-self-password-modal
+  [(isVisible)]="isUpdateSelfPasswordModalVisible"
+></app-update-self-password-modal>

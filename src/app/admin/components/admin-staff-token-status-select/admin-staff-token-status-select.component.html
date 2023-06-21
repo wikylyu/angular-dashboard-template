@@ -1,0 +1,11 @@
+<nz-input-group [nzAddOnBefore]="label">
+  <nz-select
+    [(ngModel)]="value"
+    nzAllowClear
+    (ngModelChange)="onChange()"
+    [nzDisabled]="disabled"
+  >
+    <nz-option nzValue="OK" nzLabel="正常"></nz-option>
+    <nz-option nzValue="Invalid" nzLabel="失效"></nz-option>
+  </nz-select>
+</nz-input-group>

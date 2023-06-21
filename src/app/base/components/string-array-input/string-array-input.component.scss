@@ -1,0 +1,32 @@
+:host {
+  div.string {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.cdk-drag-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.string-placeholder {
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 37px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

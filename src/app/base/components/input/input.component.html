@@ -1,0 +1,30 @@
+<nz-input-group
+  [nzAddOnBefore]="label"
+  [ngStyle]="{ width: width }"
+  [nzAddOnAfter]="after"
+  [nzSuffix]="suffix"
+>
+  <input
+    nz-input
+    [placeholder]="placeholder"
+    [(ngModel)]="value"
+    (ngModelChange)="onChange()"
+    (keydown.enter)="keyEnter()"
+    [disabled]="disabled"
+    [type]="passwordVisible ? 'text' : type"
+    autocomplete="off"
+    [nzAutocomplete]="auto"
+  />
+  <nz-autocomplete [nzDataSource]="options" nzBackfill #auto></nz-autocomplete>
+</nz-input-group>
+
+<ng-template #suffix>
+  <ng-container *ngIf="type === 'password'">
+    <span
+      nz-icon
+      [nzType]="passwordVisible ? 'eye' : 'eye-invisible'"
+      nzTheme="outline"
+      (click)="passwordVisible = !passwordVisible"
+    ></span>
+  </ng-container>
+</ng-template>

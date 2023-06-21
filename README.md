@@ -1,6 +1,10 @@
-# AngularDashboardTemplate
+# Angular 后台管理系统模板
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+使用[Angular](https://angular.io/)+[Ant Design](https://ng.ant.design/docs/introduce/en)开发
+
+只实现了基本的框架，没有额外功能。
+
+需要配合相关的后台模板使用。（暂时未实现）
 
 ## Development server
 

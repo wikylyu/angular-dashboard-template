@@ -1,0 +1,24 @@
+<nz-input-group [nzAddOnBefore]="label">
+  <nz-select
+    nzShowSearch
+    nzServerSearch
+    nzPlaceHolder="搜索"
+    [(ngModel)]="value"
+    [nzShowArrow]="false"
+    (ngModelChange)="onChange()"
+    (nzOnSearch)="search($event)"
+    [nzLoading]="loading"
+    nzAllowClear
+    [nzDropdownMatchSelectWidth]="false"
+  >
+    <nz-option
+      *ngFor="let o of options"
+      [nzValue]="o.id"
+      nzCustomContent
+      [nzLabel]="o.name"
+    >
+      {{ o.name }}
+      <app-admin-staff-status [status]="o.status"></app-admin-staff-status>
+    </nz-option>
+  </nz-select>
+</nz-input-group>

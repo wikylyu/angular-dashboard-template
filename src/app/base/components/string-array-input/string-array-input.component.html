@@ -1,0 +1,26 @@
+<nz-divider [nzText]="titleTemplate" nzOrientation="left"></nz-divider>
+
+<div class="string-list" cdkDropList (cdkDropListDropped)="drop($event)">
+  <div
+    class="string"
+    *ngFor="let m of messages; let i = index; trackBy: trackByIndex"
+    cdkDrag
+  >
+    <input nz-input [(ngModel)]="messages[i]" />
+    <button nz-button nzDanger (click)="remove(i)">
+      <span nz-icon nzType="delete" nzTheme="outline"></span>
+    </button>
+    <div class="string-placeholder" *cdkDragPlaceholder></div>
+  </div>
+</div>
+
+<ng-template #titleTemplate>
+  {{ label }}
+  <span
+    nz-icon
+    nzType="plus"
+    nzTheme="outline"
+    style="cursor: pointer"
+    (click)="add()"
+  ></span>
+</ng-template>

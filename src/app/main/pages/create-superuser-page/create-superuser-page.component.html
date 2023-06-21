@@ -1,0 +1,60 @@
+<form nz-form [formGroup]="formGroup" (ngSubmit)="submit()">
+  <nz-form-item nz-row>
+    <nz-form-control [nzSpan]="18" [nzOffset]="6">
+      <h1>创建超级用户</h1>
+      <span>超级用户智能在初始化系统时创建</span>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" nzRequired nzFor="name"> 名字 </nz-form-label>
+    <nz-form-control [nzSm]="18" nzErrorTip="请输入名字">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="name"
+          placeholder="显示名"
+          id="name"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" nzRequired nzFor="username">用户名</nz-form-label>
+
+    <nz-form-control [nzSm]="18" nzErrorTip="请输入用户名">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="username"
+          placeholder="至少四位"
+          id="username"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" nzRequired nzFor="password">密码</nz-form-label>
+
+    <nz-form-control [nzSm]="18" nzErrorTip="请输入密码">
+      <nz-input-group nzPrefixIcon="lock">
+        <input
+          type="password"
+          nz-input
+          formControlName="password"
+          placeholder="密码"
+          id="password"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row>
+    <nz-form-control [nzSpan]="18" [nzOffset]="6">
+      <button nz-button class="login" [nzType]="'primary'" type="submit">
+        创建
+      </button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
