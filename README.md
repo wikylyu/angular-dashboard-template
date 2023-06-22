@@ -4,7 +4,7 @@
 
 只实现了基本的框架，没有额外功能。
 
-需要配合相关的后台模板使用。（暂时未实现）
+需要配合相关的后台模板[fastapi-template](https://github.com/wikylyu/fastapi-template)使用
 
 ## 使用方式
 
