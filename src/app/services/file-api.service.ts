@@ -12,11 +12,10 @@ export class FileApiService {
   }
 
   fileurl(fileid: string): string {
-    if (fileid.startsWith('http')) {
-      return fileid;
-    }
     if (!fileid) {
       return '';
+    }else if (fileid.startsWith('http')) {
+      return fileid;
     }
     return this.buildurl(`/${fileid}`);
   }

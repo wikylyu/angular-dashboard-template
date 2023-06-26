@@ -28,7 +28,7 @@ export class UserListPageComponent {
   ) {
     this.route.queryParams.subscribe(() => {
       this.loadRouter();
-      this.findAdminUsers();
+      this.findUsers();
     });
   }
 
@@ -57,7 +57,7 @@ export class UserListPageComponent {
     this.mergeRouter();
   }
 
-  async findAdminUsers() {
+  async findUsers() {
     try {
       this.loading = true;
       const r = await this.api.findUsers(
