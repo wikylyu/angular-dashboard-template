@@ -70,14 +70,10 @@ import { NzResizableModule } from 'ng-zorro-antd/resizable';
 import { NzPipesModule } from 'ng-zorro-antd/pipes';
 import { NzNotificationServiceModule } from 'ng-zorro-antd/notification';
 
-
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
-  exports:[
+  imports: [CommonModule],
+  exports: [
     NzAffixModule,
     NzAlertModule,
     NzAnchorModule,
@@ -147,6 +143,6 @@ import { NzNotificationServiceModule } from 'ng-zorro-antd/notification';
     NzResizableModule,
     NzPipesModule,
     NzNotificationServiceModule,
-  ]
+  ],
 })
-export class AntdModule { }
+export class AntdModule {}
