@@ -20,6 +20,15 @@
         ></app-sidemenu-item>
       </app-sidemenu>
     </ul>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <app-sidemenu
+        title="用户管理"
+        icon="usergroup-add"
+        baseURL="/dashboard/user"
+      >
+        <app-sidemenu-item title="用户列表" link="/users"></app-sidemenu-item>
+      </app-sidemenu>
+    </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>

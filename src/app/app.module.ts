@@ -16,6 +16,7 @@ import { StaffAvatarMenuComponent } from './main/components/staff-avatar-menu/st
 import { UpdateSelfPasswordModalComponent } from './main/components/update-self-password-modal/update-self-password-modal.component';
 import { UpdateSelfProfileModalComponent } from './main/components/update-self-profile-modal/update-self-profile-modal.component';
 import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { AdminModule } from './admin/admin.module';
     UpdateSelfPasswordModalComponent,
     UpdateSelfProfileModalComponent,
   ],
-  imports: [BaseModule, AppRoutingModule, AdminModule],
+  imports: [BaseModule, AppRoutingModule, AdminModule, UserModule],
   providers: [],
   bootstrap: [AppComponent],
 })
