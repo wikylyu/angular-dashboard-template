@@ -1,0 +1,22 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 10px;
+  form {
+    width: 320px;
+    max-width: 100%;
+    h1 {
+      span {
+        color: var(--primary-color);
+      }
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
+}

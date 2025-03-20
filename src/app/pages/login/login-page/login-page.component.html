@@ -1,1 +1,35 @@
-<p>login-page works!</p>
+<form nz-form [formGroup]="formGroup" (ngSubmit)="submit()">
+  <h1>
+    登录<span>{{ appname }}</span>
+  </h1>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="请输入用户名">
+      <nz-input-group nzPrefixIcon="user" nzSize="large">
+        <input
+          type="text"
+          nz-input
+          formControlName="username"
+          placeholder="用户名"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="请输入密码">
+      <nz-input-group nzPrefixIcon="lock" nzSize="large">
+        <input
+          type="password"
+          nz-input
+          formControlName="password"
+          placeholder="密码"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <div nz-row class="login-form-margin">
+    <label nz-checkbox formControlName="remember">
+      <span>记住我</span>
+    </label>
+  </div>
+  <button nz-button nzType="primary" nzSize="large">登录</button>
+</form>

@@ -20,4 +20,17 @@ export class AdminApiService {
     const url = this.buildurl('/profile');
     return this.http.fget(url);
   }
+
+  login({
+    username,
+    password,
+    remember,
+  }: {
+    username: string;
+    password: string;
+    remember: boolean;
+  }) {
+    const url = this.buildurl('/login');
+    return this.http.put(url, { username, password, remember });
+  }
 }
