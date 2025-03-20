@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { environment } from 'src/environments/environment';
+import { AdminService } from './admin.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TitleService {
-  constructor(private title: Title) {}
+  constructor(private adminService: AdminService, private title: Title) {}
 
-  setRawTitle(s: string) {
-    this.title.setTitle(s);
-  }
-
-  setTitle(s: string) {
-    this.title.setTitle(`${s} - ${environment.appName}`);
+  setTitle(title: string) {
+    const appname = this.adminService.config()?.name || 'App';
+    if (!title) {
+      title = appname;
+    } else {
+      title = `${title} - ${appname}`;
+    }
+    this.title.setTitle(title);
   }
 }
