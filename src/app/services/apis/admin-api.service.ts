@@ -12,6 +12,23 @@ export class AdminApiService {
     return this.http.buildurl(`/admin${path}`, queryMap);
   }
 
+  get loginCaptchaUrl() {
+    return this.buildurl('/login/captcha');
+  }
+
+  createSuperuser({
+    username,
+    password,
+    name,
+  }: {
+    username: string;
+    password: string;
+    name: string;
+  }) {
+    const url = this.buildurl('/superuser');
+    return this.http.post(url, { username, password, name });
+  }
+
   getAdminConfig(): Promise<AdminConfig> {
     return this.http.fget(this.buildurl('/config'));
   }
@@ -25,12 +42,14 @@ export class AdminApiService {
     username,
     password,
     remember,
+    captcha,
   }: {
     username: string;
     password: string;
     remember: boolean;
+    captcha: string;
   }) {
     const url = this.buildurl('/login');
-    return this.http.put(url, { username, password, remember });
+    return this.http.put(url, { username, password, remember, captcha });
   }
 }

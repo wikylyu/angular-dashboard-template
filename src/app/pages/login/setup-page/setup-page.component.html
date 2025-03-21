@@ -1,1 +1,55 @@
-<p>setup-page works!</p>
+<form nz-form [formGroup]="formGroup" (ngSubmit)="submit()">
+  <h1>
+    <span>{{ appname }}</span>
+  </h1>
+  <h2>创建管理员账号</h2>
+  <nz-alert
+    nzType="info"
+    nzMessage="第一次登录需要先创建一个管理员账号"
+  ></nz-alert>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="请输入用户名">
+      <nz-input-group nzPrefixIcon="user" nzSize="large">
+        <input
+          type="text"
+          nz-input
+          formControlName="username"
+          placeholder="用户名"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="请输入密码">
+      <nz-input-group nzPrefixIcon="lock" nzSize="large">
+        <input
+          type="password"
+          nz-input
+          formControlName="password"
+          placeholder="密码"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="请输入名字">
+      <nz-input-group nzPrefixIcon="meh" nzSize="large">
+        <input
+          type="text"
+          nz-input
+          formControlName="name"
+          placeholder="展示名"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <button
+    nz-button
+    nzType="primary"
+    nzSize="large"
+    [nzLoading]="loading"
+    type="submit"
+  >
+    创建账号
+  </button>
+</form>

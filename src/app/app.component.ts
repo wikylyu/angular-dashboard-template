@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
         return;
       }
       await this.adminService.getProfile(); // 获取登录信息成功，跳转到 dashboard，否则会自动跳转到login
-      this.router.navigate(['/dashboard'], { replaceUrl: true });
+      // this.router.navigate(['/dashboard'], { replaceUrl: true });
     } catch (error) {
     } finally {
       this.loading = false;

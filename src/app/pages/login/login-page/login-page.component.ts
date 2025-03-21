@@ -6,12 +6,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { CaptchaInputComponent } from '../../../components/common/captcha-input/captcha-input.component';
 import { AdminService } from '../../../services/admin.service';
 import { AdminApiService } from '../../../services/apis/admin-api.service';
 import { ApiException } from '../../../services/apis/api.interceptor';
@@ -29,6 +31,7 @@ import { validateFormGroup } from '../../../utils/form';
     NzInputModule,
     NzCheckboxModule,
     NzIconModule,
+    CaptchaInputComponent,
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
@@ -40,7 +43,8 @@ export class LoginPageComponent {
     private fb: FormBuilder,
     private adminService: AdminService,
     private adminApi: AdminApiService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private router: Router
   ) {
     this.title.setTitle('登录');
     this.formGroup = this.fb.group({
@@ -54,8 +58,15 @@ export class LoginPageComponent {
         ],
       ],
       password: ['', [Validators.required]],
+      captcha: ['', [Validators.required]],
       remember: [false],
     });
+  }
+
+  captchaDate: Date = new Date();
+
+  get captchaUrl() {
+    return this.adminApi.loginCaptchaUrl;
   }
 
   get appname() {
@@ -65,7 +76,7 @@ export class LoginPageComponent {
   loading: boolean = false;
   async submit() {
     const value = validateFormGroup(this.formGroup);
-    if (!value) {
+    if (!value || this.loading) {
       return;
     }
     try {
@@ -74,7 +85,9 @@ export class LoginPageComponent {
         username: value.username,
         password: value.password,
         remember: value.remember,
+        captcha: value.captcha,
       });
+      this.router.navigate(['/dashboard'], { replaceUrl: true });
     } catch (error) {
       if (error instanceof ApiException) {
         if (error.status === ApiStatus.ADMIN_USER_NOT_FOUND) {
@@ -83,6 +96,9 @@ export class LoginPageComponent {
           this.message.warning('密码错误');
         } else if (error.status === ApiStatus.ADMIN_USER_BANNED) {
           this.message.warning('账号已被封禁');
+        } else if (error.status === ApiStatus.ADMIN_CAPTCHA_INCORRECT) {
+          this.message.warning('验证码错误');
+          this.captchaDate = new Date();
         } else {
           this.message.warning('未知错误');
         }

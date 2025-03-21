@@ -1,0 +1,13 @@
+<input
+  nz-input
+  placeholder="验证码"
+  [(ngModel)]="value"
+  (ngModelChange)="onChange(value)"
+  [nzSize]="large ? 'large' : 'default'"
+/>
+<img
+  [ngSrc]="src"
+  [width]="large ? 120 : 90"
+  [height]="large ? 40 : 30"
+  (click)="refresh()"
+/>
