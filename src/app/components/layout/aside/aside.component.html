@@ -24,6 +24,21 @@
         <li nz-menu-item>订单列表</li>
       </ul>
     </li>
+    <li nz-submenu nzTitle="账号管理" nzIcon="usergroup-add" nzOpen>
+      <ul>
+        <li nz-menu-item>账号列表</li>
+        <li nz-menu-item>角色管理</li>
+      </ul>
+    </li>
+
+    @if (profile?.is_superuser) {
+    <li nz-submenu nzTitle="系统管理" nzIcon="setting" nzOpen>
+      <ul>
+        <li nz-menu-item>接口列表</li>
+        <li nz-menu-item>权限设置</li>
+      </ul>
+    </li>
+    }
   </ul>
 </div>
 <button

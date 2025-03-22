@@ -5,7 +5,13 @@
   aria-label="logo"
   alt="logo"
 />
-<h1>{{ appname }}</h1>
+
+<a routerLink="/dashboard">
+  <h1>
+    <span>{{ appname }}</span>
+    <nz-tag>{{ version }}</nz-tag>
+  </h1>
+</a>
 
 <div class="flex-spacer"></div>
 <app-admin-account-menu-button></app-admin-account-menu-button>
