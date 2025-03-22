@@ -63,7 +63,7 @@ export class SetupPageComponent {
   }
 
   get appname() {
-    return this.adminService.config()?.name || 'App';
+    return this.adminService.config()?.appname || 'App';
   }
 
   loading: boolean = false;

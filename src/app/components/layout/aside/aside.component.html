@@ -1,0 +1,37 @@
+<div class="scrollable" [ngClass]="{ collapsed: isCollapsed }">
+  <ul nz-menu [nzMode]="isCollapsed ? 'vertical' : 'inline'">
+    <li nz-submenu nzTitle="Dashboard" nzIcon="dashboard" nzOpen>
+      <ul>
+        <li nz-menu-item>销量趋势</li>
+        <li nz-menu-item>数据统计</li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="商品管理" nzIcon="google" nzOpen>
+      <ul>
+        <li nz-menu-item>商品列表</li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="仓储管理" nzIcon="windows" nzOpen>
+      <ul>
+        <li nz-menu-item>仓库列表</li>
+        <li nz-menu-item>采购单</li>
+        <li nz-menu-item>入库单</li>
+        <li nz-menu-item>出库单</li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="订单管理" nzIcon="money-collect" nzOpen>
+      <ul>
+        <li nz-menu-item>订单列表</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<button
+  nz-button
+  nzShape="circle"
+  class="trigger"
+  nzSize="small"
+  (click)="isCollapsed = !isCollapsed"
+>
+  <span nz-icon [nzType]="isCollapsed ? 'right' : 'left'"></span>
+</button>

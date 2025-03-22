@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #fafafa;
+  div.content {
+    height: 0px;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    ::ng-deep router-outlet + * {
+      width: 0px;
+      flex: 1;
+      background-color: white;
+      padding: 16px;
+      height: 100%;
+      overflow-y: auto;
+    }
+  }
+}

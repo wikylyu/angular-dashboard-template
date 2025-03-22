@@ -52,4 +52,22 @@ export class AdminApiService {
     const url = this.buildurl('/login');
     return this.http.put(url, { username, password, remember, captcha });
   }
+
+  logout() {
+    const url = this.buildurl('/logout');
+    return this.http.put(url, {});
+  }
+
+  updateProfile({
+    name,
+    email,
+    phone,
+  }: {
+    name: string;
+    email: string;
+    phone: string;
+  }) {
+    const url = this.buildurl('/profile');
+    return this.http.put(url, { name, email, phone });
+  }
 }

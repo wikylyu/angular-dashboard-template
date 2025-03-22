@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -38,13 +38,15 @@ import { validateFormGroup } from '../../../utils/form';
 })
 export class LoginPageComponent {
   formGroup: FormGroup;
+  r: string = '/dashboard';
   constructor(
     private title: TitleService,
     private fb: FormBuilder,
     private adminService: AdminService,
     private adminApi: AdminApiService,
     private message: NzMessageService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.title.setTitle('登录');
     this.formGroup = this.fb.group({
@@ -61,6 +63,9 @@ export class LoginPageComponent {
       captcha: ['', [Validators.required]],
       remember: [false],
     });
+    this.route.queryParams.subscribe((params) => {
+      this.r = params['r'] || '/dashboard';
+    });
   }
 
   captchaDate: Date = new Date();
@@ -70,7 +75,11 @@ export class LoginPageComponent {
   }
 
   get appname() {
-    return this.adminService.config()?.name || 'App';
+    return this.adminService.config()?.appname || 'App';
+  }
+
+  get copyright() {
+    return this.adminService.config()?.copyright || '';
   }
 
   loading: boolean = false;
@@ -87,7 +96,7 @@ export class LoginPageComponent {
         remember: value.remember,
         captcha: value.captcha,
       });
-      this.router.navigate(['/dashboard'], { replaceUrl: true });
+      this.afterLogin();
     } catch (error) {
       if (error instanceof ApiException) {
         if (error.status === ApiStatus.ADMIN_USER_NOT_FOUND) {
@@ -106,5 +115,15 @@ export class LoginPageComponent {
     } finally {
       this.loading = false;
     }
+  }
+
+  afterLogin() {
+    try {
+      if (this.r && this.r.split('?')[0] !== '/') {
+        this.router.navigateByUrl(this.r, { replaceUrl: true });
+        return;
+      }
+    } catch (error) {}
+    this.router.navigate(['/dashboard'], { replaceUrl: true });
   }
 }

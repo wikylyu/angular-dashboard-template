@@ -1,7 +1,10 @@
+<div class="flex-spacer"></div>
+
 <form nz-form [formGroup]="formGroup" (ngSubmit)="submit()">
   <h1>
     登录<span>{{ appname }}</span>
   </h1>
+  <p>请使用用户名和密码登录系统；如果有问题请联系管理员。</p>
   <nz-form-item>
     <nz-form-control nzErrorTip="请输入用户名">
       <nz-input-group nzPrefixIcon="user" nzSize="large">
@@ -43,3 +46,6 @@
   </div>
   <button nz-button nzType="primary" nzSize="large" type="submit">登录</button>
 </form>
+<div class="flex-spacer"></div>
+
+<p>{{ copyright }}</p>

@@ -64,7 +64,7 @@ export const apiInterceptor: HttpInterceptorFn = (req, next) => {
             queryParams: { r: router.url },
           });
         }
-        return throwError(() => new Error('403'));
+        return throwError(() => new Error('401'));
       } else {
         return throwError(() => err);
       }

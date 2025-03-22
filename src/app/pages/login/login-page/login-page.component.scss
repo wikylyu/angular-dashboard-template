@@ -3,15 +3,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
   padding: 0px 10px;
+  background-image: url(https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr);
+  background-size: cover;
+  background-position: center;
   form {
+    // margin-top: 100px;
     width: 320px;
     max-width: 100%;
     h1 {
       span {
-        color: var(--primary-color);
+        // color: var(--primary-color);
       }
+    }
+    > p {
+      color: grey;
     }
 
     button {

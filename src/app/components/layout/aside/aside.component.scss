@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  position: relative;
+  div.scrollable {
+    width: 256px;
+    border-right: solid 1px #e7e7e7;
+    padding: 0px 15px;
+    transition: all ease-in-out 0.25s;
+    overflow-y: auto;
+    height: 100%;
+
+    -webkit-scrollbar {
+      display: none;
+    }
+
+    /* 隐藏滚动条 - Firefox */
+    scrollbar-width: none;
+
+    /* 隐藏滚动条 - IE 和 Edge */
+    -ms-overflow-style: none;
+
+    &.collapsed {
+      width: 56px;
+      padding: 0px;
+      > ul {
+        > li {
+          border-radius: var(--border-radius-base);
+          transition: all ease-in-out 0.25s;
+          &:hover {
+            background-color: #f0f0f0;
+          }
+          padding: 0px;
+          ::ng-deep div.ant-menu-submenu-title {
+            padding: 0px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            span {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    > ul {
+      min-height: 100%;
+      background-color: transparent;
+      border: none;
+      user-select: none;
+      > li {
+        ul {
+          li {
+            border-radius: var(--border-radius-base);
+            transition: all ease-in-out 0.25s;
+            &:hover {
+              background-color: #f0f0f0;
+            }
+          }
+        }
+      }
+    }
+  }
+  button.trigger {
+    position: absolute;
+    right: 0px;
+    top: 50px;
+    transform: translateX(50%);
+
+    span {
+      transition: all ease-in-out 0.25s;
+      opacity: 0.2;
+    }
+    &:hover {
+      span {
+        opacity: 1;
+      }
+    }
+  }
+}

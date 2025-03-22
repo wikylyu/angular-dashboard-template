@@ -9,7 +9,7 @@ export class TitleService {
   constructor(private adminService: AdminService, private title: Title) {}
 
   setTitle(title: string) {
-    const appname = this.adminService.config()?.name || 'App';
+    const appname = this.adminService.config()?.appname || 'App';
     if (!title) {
       title = appname;
     } else {

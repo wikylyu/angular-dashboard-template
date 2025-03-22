@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { DashboardOverviewPageComponent } from './pages/dashboard/dashboard-overview-page/dashboard-overview-page.component';
 import { DashboardPageComponent } from './pages/dashboard/dashboard-page/dashboard-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
@@ -18,7 +19,18 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    pathMatch: 'full',
     component: DashboardPageComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'overview',
+      },
+      {
+        path: 'overview',
+        pathMatch: 'full',
+        component: DashboardOverviewPageComponent,
+      },
+    ],
   },
 ];

@@ -2,7 +2,8 @@ import { BaseModel } from './base';
 
 export interface AdminConfig {
   onboarding: boolean;
-  name: string;
+  appname: string;
+  copyright: string;
   version: string;
   admin_username_pattern: string;
 }

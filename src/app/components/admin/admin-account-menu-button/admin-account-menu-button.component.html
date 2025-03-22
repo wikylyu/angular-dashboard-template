@@ -1,0 +1,14 @@
+<nz-avatar
+  [nzText]="profile?.name?.at(0)"
+  nz-dropdown
+  [nzDropdownMenu]="menu"
+></nz-avatar>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <li nz-menu-item>个人信息</li>
+    <li nz-menu-item>修改密码</li>
+    <li nz-menu-divider></li>
+    <li nz-menu-item nzDanger (click)="logout()">退出登录</li>
+  </ul>
+</nz-dropdown-menu>
