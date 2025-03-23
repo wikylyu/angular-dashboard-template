@@ -6,6 +6,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { AdminService } from '../../../services/admin.service';
 import { AdminApiService } from '../../../services/apis/admin-api.service';
+import { UpdateAdminPasswordModalComponent } from '../update-admin-password-modal/update-admin-password-modal.component';
 import { UpdateAdminProfileModalComponent } from '../update-admin-profile-modal/update-admin-profile-modal.component';
 
 @Component({
@@ -33,6 +34,13 @@ export class AdminAccountMenuButtonComponent implements OnInit {
   openAdminProfileModal() {
     this.modalService.create({
       nzContent: UpdateAdminProfileModalComponent,
+      nzWidth: '420px',
+    });
+  }
+
+  openAdminPasswordModal() {
+    this.modalService.create({
+      nzContent: UpdateAdminPasswordModalComponent,
       nzWidth: '420px',
     });
   }

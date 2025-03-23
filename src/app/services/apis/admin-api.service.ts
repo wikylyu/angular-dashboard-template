@@ -16,6 +16,10 @@ export class AdminApiService {
     return this.buildurl('/login/captcha');
   }
 
+  get passwordCaptcahaUrl() {
+    return this.buildurl('/password/captcha');
+  }
+
   createSuperuser({
     username,
     password,
@@ -69,5 +73,10 @@ export class AdminApiService {
   }) {
     const url = this.buildurl('/profile');
     return this.http.put(url, { name, email, phone });
+  }
+
+  updatePassword({ password, captcha }: { password: string; captcha: string }) {
+    const url = this.buildurl('/password');
+    return this.http.put(url, { password, captcha });
   }
 }
