@@ -6,6 +6,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { AdminService } from '../../../services/admin.service';
 import { AdminApiService } from '../../../services/apis/admin-api.service';
+import { UpdateAdminProfileModalComponent } from '../update-admin-profile-modal/update-admin-profile-modal.component';
 
 @Component({
   selector: 'app-admin-account-menu-button',
@@ -29,9 +30,17 @@ export class AdminAccountMenuButtonComponent implements OnInit {
     return this.adminService.profile();
   }
 
+  openAdminProfileModal() {
+    this.modalService.create({
+      nzContent: UpdateAdminProfileModalComponent,
+      nzWidth: '420px',
+    });
+  }
+
   logout() {
     this.modalService.confirm({
       nzTitle: '确定要退出登录吗?',
+      nzOkDanger: true,
       nzOnOk: () => this.doLogout(),
     });
   }
