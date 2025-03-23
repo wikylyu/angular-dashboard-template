@@ -1,0 +1,15 @@
+<app-content [breadCrumbs]="['系统管理', 'API列表']">
+  <app-actionbar>
+    <nz-input-group nzAddOnBefore="请求方法">
+      <app-api-method-select [(ngModel)]="queryMethod"></app-api-method-select>
+    </nz-input-group>
+    <nz-input-group nzAddOnBefore="路径">
+      <input nz-input (keydown.enter)="search()" [(ngModel)]="query" />
+    </nz-input-group>
+    <app-search-button (search)="search()"></app-search-button>
+
+    <ng-template #right>
+      <app-create-button></app-create-button>
+    </ng-template>
+  </app-actionbar>
+</app-content>

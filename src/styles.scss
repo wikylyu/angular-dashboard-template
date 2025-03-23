@@ -15,3 +15,9 @@ div.flex-spacer {
 * {
   box-sizing: border-box;
 }
+nz-input-group {
+  nz-select-top-control.ant-select-selector {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+  }
+}

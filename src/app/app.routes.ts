@@ -4,6 +4,8 @@ import { DashboardPageComponent } from './pages/dashboard/dashboard-page/dashboa
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 import { SetupPageComponent } from './pages/login/setup-page/setup-page.component';
+import { ApiListPageComponent } from './pages/system/api-list-page/api-list-page.component';
+import { PermissionsPageComponent } from './pages/system/permissions-page/permissions-page.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +32,21 @@ export const routes: Routes = [
         path: 'overview',
         pathMatch: 'full',
         component: DashboardOverviewPageComponent,
+      },
+      {
+        path: 'system',
+        children: [
+          {
+            path: 'apis',
+            pathMatch: 'full',
+            component: ApiListPageComponent,
+          },
+          {
+            path: 'permissions',
+            pathMatch: 'full',
+            component: PermissionsPageComponent,
+          },
+        ],
       },
     ],
   },

@@ -1,0 +1,11 @@
+<nz-select
+  [(ngModel)]="value"
+  [nzDropdownMatchSelectWidth]="true"
+  nzPlaceHolder="请选择"
+  nzAllowClear
+  (ngModelChange)="onChange($event || '')"
+>
+  @for (method of methods; track $index) {
+  <nz-option [nzLabel]="method" [nzValue]="method"></nz-option>
+  }
+</nz-select>

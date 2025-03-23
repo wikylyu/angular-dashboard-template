@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  nz-breadcrumb {
+    font-size: 1.2rem;
+    nz-breadcrumb-item {
+      *:last-child {
+        font-weight: bold;
+      }
+    }
+  }
+}
