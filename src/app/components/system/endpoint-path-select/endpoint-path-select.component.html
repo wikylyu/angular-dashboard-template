@@ -1,0 +1,17 @@
+<nz-select
+  nzShowSearch
+  nzServerSearch
+  nzPlaceHolder="搜索"
+  [(ngModel)]="value"
+  (ngModelChange)="onChange($event)"
+  [nzShowArrow]="false"
+  (nzOnSearch)="search($event)"
+  [nzLoading]="loading"
+  [nzDropdownMatchSelectWidth]="false"
+  nzAllowClear
+  [nzDisabled]="!method"
+>
+  @for (item of items; track item) {
+  <nz-option [nzLabel]="item.path" [nzValue]="item.path"></nz-option>
+  }
+</nz-select>

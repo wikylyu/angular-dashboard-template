@@ -1,0 +1,40 @@
+<div *nzModalTitle>{{ data?.id ? "编辑权限" : "新建权限" }}</div>
+
+<form nz-form [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label>名字</nz-form-label>
+    <nz-form-control nzErrorTip="请输入权限名">
+      <input nz-input formControlName="name" placeholder="权限名" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label>上级</nz-form-label>
+    <nz-form-control nzErrorTip="请选择上级权限">
+      <app-permission-select
+        formControlName="parent_id"
+        [disabledID]="data?.id || 0"
+      ></app-permission-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label>编码</nz-form-label>
+    <nz-form-control nzErrorTip="请输入权限编码">
+      <input nz-input formControlName="code" placeholder="权限编码" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label>备注</nz-form-label>
+    <nz-form-control>
+      <textarea
+        nz-input
+        formControlName="remark"
+        placeholder="备注信息"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<div *nzModalFooter>
+  <button nz-button (click)="close()">取消</button>
+  <button nz-button nzType="primary" (click)="onOk()">确定</button>
+</div>

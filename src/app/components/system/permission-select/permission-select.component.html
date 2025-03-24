@@ -1,0 +1,8 @@
+<nz-tree-select
+  style="width: 250px"
+  [nzNodes]="nodes"
+  nzShowSearch
+  nzPlaceHolder="选择权限"
+  [(ngModel)]="value"
+  (ngModelChange)="onChange($event)"
+></nz-tree-select>

@@ -4,12 +4,82 @@
       <app-api-method-select [(ngModel)]="queryMethod"></app-api-method-select>
     </nz-input-group>
     <nz-input-group nzAddOnBefore="路径">
-      <input nz-input (keydown.enter)="search()" [(ngModel)]="query" />
+      <!-- <input nz-input (keydown.enter)="search()" [(ngModel)]="query" /> -->
+      <app-endpoint-path-select
+        [(ngModel)]="queryPath"
+        [method]="queryMethod"
+      ></app-endpoint-path-select>
     </nz-input-group>
-    <app-search-button (search)="search()"></app-search-button>
+    <app-search-button
+      (search)="search()"
+      [loading]="loading"
+    ></app-search-button>
 
     <ng-template #right>
       <app-create-button></app-create-button>
     </ng-template>
   </app-actionbar>
+
+  <div app-card>
+    <nz-table
+      #table
+      [nzData]="items"
+      [(nzPageSize)]="pageSize"
+      [(nzPageIndex)]="page"
+      [nzTotal]="total"
+      (nzPageSizeChange)="findApis()"
+      (nzPageIndexChange)="findApis()"
+      [nzLoading]="loading"
+      [nzShowSizeChanger]="true"
+      [nzFrontPagination]="false"
+      [nzShowTotal]="totalTemplate"
+    >
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Method</th>
+          <th>Path</th>
+          <th>权限</th>
+          <th>创建时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (data of table.data; track $index) {
+        <tr>
+          <td>
+            {{ data.id }}
+          </td>
+          <td>
+            <app-api-method [method]="data.method"></app-api-method>
+          </td>
+          <td>
+            {{ data.path }}
+          </td>
+          <td>
+            @for (permission_id of data.permission_ids; track $index) {
+            <app-permission-label [id]="permission_id"></app-permission-label>
+            }
+          </td>
+          <td>
+            {{ data.created_at | date : "short" }}
+          </td>
+          <td>
+            <a nz-dropdown [nzDropdownMenu]="menu">
+              <span nz-icon nzType="menu"></span>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item (click)="update(data)">编辑</li>
+              </ul>
+            </nz-dropdown-menu>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </nz-table>
+    <ng-template #totalTemplate let-range="range" let-total>
+      总计:{{ total }}
+    </ng-template>
+  </div>
 </app-content>

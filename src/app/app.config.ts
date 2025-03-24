@@ -8,6 +8,7 @@ import zh from '@angular/common/locales/zh';
 import {
   ApplicationConfig,
   importProvidersFrom,
+  LOCALE_ID,
   provideZoneChangeDetection,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -37,5 +38,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(withFetch(), withInterceptors([apiInterceptor])),
     provideNzIcons(icons),
+    { provide: LOCALE_ID, useValue: 'zh' },
   ],
 };

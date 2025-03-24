@@ -1,0 +1,4 @@
+<nz-tag>
+  @for (perm of perms; track $index) { @if($index>0){/}{{ perm.name }} } (@for
+  (perm of perms; track $index) {@if($index>0){.}{{ perm.code }}})
+</nz-tag>

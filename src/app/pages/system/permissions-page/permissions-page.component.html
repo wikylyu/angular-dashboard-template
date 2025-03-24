@@ -1,1 +1,33 @@
-<p>permissions-page works!</p>
+<app-content [breadCrumbs]="['系统管理', '权限设置']">
+  <app-create-button (create)="update({})"></app-create-button>
+
+  <div app-card>
+    <nz-tree
+      #tree
+      [nzData]="nodes"
+      (nzClick)="click($event)"
+      (nzContextMenu)="contextMenu($event)"
+      nzBlockNode
+      nzDraggable
+      (nzOnDrop)="onDrop($event)"
+      [nzBeforeDrop]="beforeDrop"
+    ></nz-tree>
+  </div>
+</app-content>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item (click)="edit()">
+      <span nz-icon nzType="edit"></span>
+      <span>编辑</span>
+    </li>
+    <li nz-menu-item (click)="createChild()">
+      <span nz-icon nzType="plus"></span>
+      <span>添加子节点</span>
+    </li>
+    <li nz-menu-item (click)="delete()" nzDanger>
+      <span nz-icon nzType="delete"></span>
+      <span>删除</span>
+    </li>
+  </ul>
+</nz-dropdown-menu>
