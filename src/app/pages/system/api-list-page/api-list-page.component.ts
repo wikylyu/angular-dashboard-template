@@ -73,6 +73,24 @@ export class ApiListPageComponent implements OnInit {
         page_size: this.pageSize,
       });
       this.items = r.items;
+      // this.items = [
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      //   ...r.items,
+      // ];
       this.total = r.total;
       this.page = r.page;
       this.pageSize = r.page_size;

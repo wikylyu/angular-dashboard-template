@@ -1,17 +1,17 @@
 <div class="scrollable" [ngClass]="{ collapsed: isCollapsed }">
   <ul nz-menu [nzMode]="isCollapsed ? 'vertical' : 'inline'">
-    <li nz-submenu nzTitle="Dashboard" nzIcon="dashboard" nzOpen>
+    <li nz-submenu nzTitle="Dashboard" nzIcon="dashboard" appSaveMenuOpenState>
       <ul>
         <li nz-menu-item>销量趋势</li>
         <li nz-menu-item>数据统计</li>
       </ul>
     </li>
-    <li nz-submenu nzTitle="商品管理" nzIcon="google" nzOpen>
+    <li nz-submenu nzTitle="商品管理" nzIcon="google" appSaveMenuOpenState>
       <ul>
         <li nz-menu-item>商品列表</li>
       </ul>
     </li>
-    <li nz-submenu nzTitle="仓储管理" nzIcon="windows" nzOpen>
+    <li nz-submenu nzTitle="仓储管理" nzIcon="windows" appSaveMenuOpenState>
       <ul>
         <li nz-menu-item>仓库列表</li>
         <li nz-menu-item>采购单</li>
@@ -19,12 +19,22 @@
         <li nz-menu-item>出库单</li>
       </ul>
     </li>
-    <li nz-submenu nzTitle="订单管理" nzIcon="money-collect" nzOpen>
+    <li
+      nz-submenu
+      nzTitle="订单管理"
+      nzIcon="money-collect"
+      appSaveMenuOpenState
+    >
       <ul>
         <li nz-menu-item>订单列表</li>
       </ul>
     </li>
-    <li nz-submenu nzTitle="账号管理" nzIcon="usergroup-add" nzOpen>
+    <li
+      nz-submenu
+      nzTitle="账号管理"
+      nzIcon="usergroup-add"
+      appSaveMenuOpenState
+    >
       <ul>
         <li nz-menu-item>账号列表</li>
         <li nz-menu-item>角色管理</li>
@@ -32,7 +42,7 @@
     </li>
 
     @if (profile?.is_superuser) {
-    <li nz-submenu nzTitle="系统管理" nzIcon="setting" nzOpen>
+    <li nz-submenu nzTitle="系统管理" nzIcon="setting" appSaveMenuOpenState>
       <ul>
         <li nz-menu-item routerLink="/dashboard/system/apis" nzMatchRouter>
           接口列表
