@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AsideComponent } from './aside.component';
+import { HttpMethodComponent } from './http-method.component';
 
-describe('AsideComponent', () => {
-  let component: AsideComponent;
-  let fixture: ComponentFixture<AsideComponent>;
+describe('HttpMethodComponent', () => {
+  let component: HttpMethodComponent;
+  let fixture: ComponentFixture<HttpMethodComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AsideComponent]
+      imports: [HttpMethodComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AsideComponent);
+    fixture = TestBed.createComponent(HttpMethodComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

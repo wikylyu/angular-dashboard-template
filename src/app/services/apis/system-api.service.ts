@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pagination } from '../../models/base';
-import { Api, Endpoint, Permission } from '../../models/system';
+import { Api, Permission, Route } from '../../models/system';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -13,14 +13,14 @@ export class SystemApiService {
     return this.http.buildurl(`/system${path}`, queryMap);
   }
 
-  findEndpoints({
+  findRoutes({
     method = '',
     path = '',
   }: {
     method: string;
     path: string;
-  }): Promise<Endpoint[]> {
-    const url = this.buildurl('/endpoints', { method, path });
+  }): Promise<Route[]> {
+    const url = this.buildurl('/routes', { method, path });
     return this.http.fget(url);
   }
 

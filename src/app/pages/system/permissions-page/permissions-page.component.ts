@@ -16,15 +16,16 @@ import {
 import { Observable, of } from 'rxjs';
 import { CardComponent } from '../../../components/common/card/card.component';
 import { CreateButtonComponent } from '../../../components/common/create-button/create-button.component';
-import { ContentComponent } from '../../../components/layout/content/content.component';
+import { PageContentComponent } from '../../../components/layout/page-content/page-content.component';
 import { UpdatePermissionModalComponent } from '../../../components/system/update-permission-modal/update-permission-modal.component';
 import { Permission } from '../../../models/system';
 import { SystemApiService } from '../../../services/apis/system-api.service';
+import { deepCopy } from '../../../utils/data';
 
 @Component({
   selector: 'app-permissions-page',
   imports: [
-    ContentComponent,
+    PageContentComponent,
     CreateButtonComponent,
     NzModalModule,
     NzTreeModule,
@@ -79,7 +80,7 @@ export class PermissionsPageComponent {
       .create({
         nzContent: UpdatePermissionModalComponent,
         nzWidth: '480px',
-        nzData: Object.assign({}, data),
+        nzData: deepCopy(data),
       })
       .afterClose.subscribe((r) => {
         if (r) {

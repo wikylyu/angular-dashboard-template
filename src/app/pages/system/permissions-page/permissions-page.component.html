@@ -1,4 +1,4 @@
-<app-content [breadCrumbs]="['系统管理', '权限设置']">
+<app-page-content [breadCrumbs]="['系统管理', '权限设置']">
   <app-create-button (create)="update({})"></app-create-button>
 
   <div app-card>
@@ -13,7 +13,7 @@
       [nzBeforeDrop]="beforeDrop"
     ></nz-tree>
   </div>
-</app-content>
+</app-page-content>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu>

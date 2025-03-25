@@ -10,7 +10,7 @@ export interface Permission extends BaseModel {
   children: Permission[];
 }
 
-export interface Endpoint {
+export interface Route {
   method: string;
   path: string;
 }

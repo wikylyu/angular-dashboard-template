@@ -3,8 +3,8 @@ import { RouterModule } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { AsideComponent } from '../../../components/layout/aside/aside.component';
-import { HeaderComponent } from '../../../components/layout/header/header.component';
+import { PageAsideComponent } from '../../../components/layout/page-aside/page-aside.component';
+import { PageHeaderComponent } from '../../../components/layout/page-header/page-header.component';
 import { AdminService } from '../../../services/admin.service';
 import { TitleService } from '../../../services/title.service';
 
@@ -15,8 +15,8 @@ import { TitleService } from '../../../services/title.service';
     NzMenuModule,
     NzLayoutModule,
     RouterModule,
-    HeaderComponent,
-    AsideComponent,
+    PageHeaderComponent,
+    PageAsideComponent,
   ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss',

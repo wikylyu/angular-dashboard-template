@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ContentComponent } from '../../../components/layout/content/content.component';
+import { PageContentComponent } from '../../../components/layout/page-content/page-content.component';
 
 @Component({
   selector: 'app-dashboard-overview-page',
-  imports: [ContentComponent],
+  imports: [PageContentComponent],
   templateUrl: './dashboard-overview-page.component.html',
   styleUrl: './dashboard-overview-page.component.scss',
 })

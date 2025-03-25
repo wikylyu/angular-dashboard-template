@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
+import { RoutePathSelectComponent } from './route-path-select.component';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('RoutePathSelectComponent', () => {
+  let component: RoutePathSelectComponent;
+  let fixture: ComponentFixture<RoutePathSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderComponent]
+      imports: [RoutePathSelectComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(RoutePathSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -53,8 +53,12 @@
           li {
             border-radius: var(--border-radius-base);
             transition: all ease-in-out 0.25s;
+
             &:hover {
               background-color: #f0f0f0;
+            }
+            &.active {
+              background-color: #dddddd;
             }
           }
         }

@@ -1,13 +1,13 @@
-<app-content [breadCrumbs]="['系统管理', 'API列表']">
-  <app-actionbar>
+<app-page-content [breadCrumbs]="['系统管理', 'API列表']">
+  <app-page-actionbar>
     <nz-input-group nzAddOnBefore="请求方法">
-      <app-api-method-select [(ngModel)]="queryMethod"></app-api-method-select>
+      <app-http-method-select [(ngModel)]="queryMethod"></app-http-method-select>
     </nz-input-group>
     <nz-input-group nzAddOnBefore="路径">
-      <app-endpoint-path-select
+      <app-route-path-select
         [(ngModel)]="queryPath"
         [method]="queryMethod"
-      ></app-endpoint-path-select>
+      ></app-route-path-select>
     </nz-input-group>
     <app-search-button
       (search)="search()"
@@ -17,7 +17,7 @@
     <ng-template #right>
       <app-create-button (create)="update()"></app-create-button>
     </ng-template>
-  </app-actionbar>
+  </app-page-actionbar>
 
   <div app-card>
     <nz-table
@@ -51,7 +51,7 @@
             {{ data.id }}
           </td>
           <td>
-            <app-api-method [method]="data.method"></app-api-method>
+            <app-http-method [method]="data.method"></app-http-method>
           </td>
           <td>
             {{ data.path }}
@@ -87,4 +87,4 @@
       总计:{{ total }}
     </ng-template>
   </div>
-</app-content>
+</app-page-content>

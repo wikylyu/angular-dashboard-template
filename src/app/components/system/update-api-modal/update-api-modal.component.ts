@@ -15,15 +15,15 @@ import { ApiException } from '../../../services/apis/api.interceptor';
 import { ApiStatus } from '../../../services/apis/status';
 import { SystemApiService } from '../../../services/apis/system-api.service';
 import { validateFormGroup } from '../../../utils/form';
-import { ApiMethodSelectComponent } from '../api-method-select/api-method-select.component';
-import { EndpointPathSelectComponent } from '../endpoint-path-select/endpoint-path-select.component';
+import { HttpMethodSelectComponent } from '../http-method-select/http-method-select.component';
 import { PermissionMultipleSelectComponent } from '../permission-multiple-select/permission-multiple-select.component';
+import { RoutePathSelectComponent } from '../route-path-select/route-path-select.component';
 
 @Component({
   selector: 'app-update-api-modal',
   imports: [
-    EndpointPathSelectComponent,
-    ApiMethodSelectComponent,
+    RoutePathSelectComponent,
+    HttpMethodSelectComponent,
     NzButtonModule,
     NzFormModule,
     FormsModule,
@@ -82,7 +82,7 @@ export class UpdateApiModalComponent {
       if (error instanceof ApiException) {
         if (error.status === ApiStatus.API_EXISTS) {
           this.message.warning('API已存在');
-        } else if (error.status === ApiStatus.ENDPOINT_NOT_FOUND) {
+        } else if (error.status === ApiStatus.ROUTE_NOT_FOUND) {
           this.message.warning('路由不存在');
         } else if (error.status !== ApiStatus.OK) {
           this.message.warning('未知错误');
@@ -107,7 +107,7 @@ export class UpdateApiModalComponent {
       if (error instanceof ApiException) {
         if (error.status === ApiStatus.API_EXISTS) {
           this.message.warning('API已存在');
-        } else if (error.status === ApiStatus.ENDPOINT_NOT_FOUND) {
+        } else if (error.status === ApiStatus.ROUTE_NOT_FOUND) {
           this.message.warning('路由不存在');
         } else if (error.status !== ApiStatus.OK) {
           this.message.warning('未知错误');

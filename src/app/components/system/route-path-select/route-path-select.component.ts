@@ -11,27 +11,27 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { Endpoint } from '../../../models/system';
+import { Route } from '../../../models/system';
 import { SystemApiService } from '../../../services/apis/system-api.service';
 
 @Component({
-  selector: 'app-endpoint-path-select',
+  selector: 'app-route-path-select',
   imports: [NzSelectModule, FormsModule],
-  templateUrl: './endpoint-path-select.component.html',
-  styleUrl: './endpoint-path-select.component.scss',
+  templateUrl: './route-path-select.component.html',
+  styleUrl: './route-path-select.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => EndpointPathSelectComponent),
+      useExisting: forwardRef(() => RoutePathSelectComponent),
       multi: true,
     },
   ],
 })
-export class EndpointPathSelectComponent
+export class RoutePathSelectComponent
   implements ControlValueAccessor, OnChanges
 {
   value: string = '';
-  items: Endpoint[] = [];
+  items: Route[] = [];
   @Input({}) method: string = '';
   constructor(private systemApi: SystemApiService) {}
 
@@ -47,7 +47,7 @@ export class EndpointPathSelectComponent
   async search(q: string) {
     try {
       this.loading = true;
-      this.items = await this.systemApi.findEndpoints({
+      this.items = await this.systemApi.findRoutes({
         path: q,
         method: this.method,
       });

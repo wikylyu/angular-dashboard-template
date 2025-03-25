@@ -8,9 +8,9 @@
       <nz-form-item>
         <nz-form-label>方法</nz-form-label>
         <nz-form-control nzErrorTip="请选择方法">
-          <app-api-method-select
+          <app-http-method-select
             formControlName="method"
-          ></app-api-method-select>
+          ></app-http-method-select>
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -18,10 +18,10 @@
       <nz-form-item>
         <nz-form-label>路径</nz-form-label>
         <nz-form-control nzErrorTip="请选择路由">
-          <app-endpoint-path-select
+          <app-route-path-select
             formControlName="path"
             [method]="formGroup.value.method"
-          ></app-endpoint-path-select>
+          ></app-route-path-select>
         </nz-form-control>
       </nz-form-item>
     </div>

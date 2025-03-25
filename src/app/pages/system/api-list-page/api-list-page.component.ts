@@ -12,36 +12,37 @@ import { AdminUserLabelComponent } from '../../../components/admin/admin-user-la
 import { CardComponent } from '../../../components/common/card/card.component';
 import { CreateButtonComponent } from '../../../components/common/create-button/create-button.component';
 import { SearchButtonComponent } from '../../../components/common/search-button/search-button.component';
-import { ActionbarComponent } from '../../../components/layout/actionbar/actionbar.component';
-import { ContentComponent } from '../../../components/layout/content/content.component';
-import { ApiMethodSelectComponent } from '../../../components/system/api-method-select/api-method-select.component';
-import { ApiMethodComponent } from '../../../components/system/api-method/api-method.component';
-import { EndpointPathSelectComponent } from '../../../components/system/endpoint-path-select/endpoint-path-select.component';
+import { PageActionbarComponent } from '../../../components/layout/page-actionbar/page-actionbar.component';
+import { PageContentComponent } from '../../../components/layout/page-content/page-content.component';
+import { HttpMethodSelectComponent } from '../../../components/system/http-method-select/http-method-select.component';
+import { HttpMethodComponent } from '../../../components/system/http-method/http-method.component';
 import { PermissionLabelComponent } from '../../../components/system/permission-label/permission-label.component';
+import { RoutePathSelectComponent } from '../../../components/system/route-path-select/route-path-select.component';
 import { UpdateApiModalComponent } from '../../../components/system/update-api-modal/update-api-modal.component';
 import { Api } from '../../../models/system';
 import { SystemApiService } from '../../../services/apis/system-api.service';
+import { deepCopy } from '../../../utils/data';
 
 @Component({
   selector: 'app-api-list-page',
   imports: [
-    ContentComponent,
+    PageContentComponent,
     NzCardModule,
     SearchButtonComponent,
     NzInputModule,
-    ActionbarComponent,
-    ApiMethodSelectComponent,
+    PageActionbarComponent,
+    HttpMethodSelectComponent,
     FormsModule,
     NzModalModule,
     NzButtonModule,
     CreateButtonComponent,
-    EndpointPathSelectComponent,
+    RoutePathSelectComponent,
     CardComponent,
     NzTableModule,
     DatePipe,
     PermissionLabelComponent,
     NzDropDownModule,
-    ApiMethodComponent,
+    HttpMethodComponent,
     NzIconModule,
     AdminUserLabelComponent,
   ],
@@ -95,7 +96,7 @@ export class ApiListPageComponent implements OnInit {
       .create({
         nzContent: UpdateApiModalComponent,
         nzWidth: '640px',
-        nzData: data ? Object.assign({}, data) : undefined,
+        nzData: deepCopy(data),
       })
       .afterClose.subscribe((r) => {
         if (r) {

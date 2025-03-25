@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 
 @Component({
-  selector: 'app-api-method',
+  selector: 'app-http-method',
   imports: [NzTagModule],
-  templateUrl: './api-method.component.html',
-  styleUrl: './api-method.component.scss',
+  templateUrl: './http-method.component.html',
+  styleUrl: './http-method.component.scss',
 })
-export class ApiMethodComponent {
+export class HttpMethodComponent {
   @Input({ required: true }) method: string = '';
 
   get color() {

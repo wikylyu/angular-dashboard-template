@@ -8,7 +8,7 @@ import { SaveMenuOpenStateDirective } from '../../../directives/save-menu-open-s
 import { AdminService } from '../../../services/admin.service';
 
 @Component({
-  selector: 'aside[app-aside]',
+  selector: 'aside[app-page-aside]',
   imports: [
     NzIconModule,
     NzMenuModule,
@@ -17,10 +17,10 @@ import { AdminService } from '../../../services/admin.service';
     RouterModule,
     SaveMenuOpenStateDirective,
   ],
-  templateUrl: './aside.component.html',
-  styleUrl: './aside.component.scss',
+  templateUrl: './page-aside.component.html',
+  styleUrl: './page-aside.component.scss',
 })
-export class AsideComponent {
+export class PageAsideComponent {
   isCollapsed: boolean = false;
 
   constructor(private adminService: AdminService) {}

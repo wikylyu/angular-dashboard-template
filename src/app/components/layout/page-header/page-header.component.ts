@@ -6,17 +6,17 @@ import { AdminService } from '../../../services/admin.service';
 import { AdminAccountMenuButtonComponent } from '../../admin/admin-account-menu-button/admin-account-menu-button.component';
 
 @Component({
-  selector: 'header[app-header]',
+  selector: 'header[app-page-header]',
   imports: [
     NgOptimizedImage,
     AdminAccountMenuButtonComponent,
     NzTagModule,
     RouterModule,
   ],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  templateUrl: './page-header.component.html',
+  styleUrl: './page-header.component.scss',
 })
-export class HeaderComponent {
+export class PageHeaderComponent {
   constructor(private adminService: AdminService) {}
 
   get appname() {

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApiMethodSelectComponent } from './api-method-select.component';
+import { PageActionbarComponent } from './page-actionbar.component';
 
-describe('ApiMethodSelectComponent', () => {
-  let component: ApiMethodSelectComponent;
-  let fixture: ComponentFixture<ApiMethodSelectComponent>;
+describe('PageActionbarComponent', () => {
+  let component: PageActionbarComponent;
+  let fixture: ComponentFixture<PageActionbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ApiMethodSelectComponent]
+      imports: [PageActionbarComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ApiMethodSelectComponent);
+    fixture = TestBed.createComponent(PageActionbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

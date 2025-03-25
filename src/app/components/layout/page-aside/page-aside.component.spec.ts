@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApiMethodComponent } from './api-method.component';
+import { PageAsideComponent } from './page-aside.component';
 
-describe('ApiMethodComponent', () => {
-  let component: ApiMethodComponent;
-  let fixture: ComponentFixture<ApiMethodComponent>;
+describe('PageAsideComponent', () => {
+  let component: PageAsideComponent;
+  let fixture: ComponentFixture<PageAsideComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ApiMethodComponent]
+      imports: [PageAsideComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ApiMethodComponent);
+    fixture = TestBed.createComponent(PageAsideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

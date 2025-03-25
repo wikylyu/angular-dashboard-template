@@ -44,13 +44,19 @@
     @if (profile?.is_superuser) {
     <li nz-submenu nzTitle="系统管理" nzIcon="setting" appSaveMenuOpenState>
       <ul>
-        <li nz-menu-item routerLink="/dashboard/system/apis" nzMatchRouter>
+        <li
+          nz-menu-item
+          routerLink="/dashboard/system/apis"
+          nzMatchRouter
+          routerLinkActive="active"
+        >
           接口列表
         </li>
         <li
           nz-menu-item
           routerLink="/dashboard/system/permissions"
           nzMatchRouter
+          routerLinkActive="active"
         >
           权限设置
         </li>

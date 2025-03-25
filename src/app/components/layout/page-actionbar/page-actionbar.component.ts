@@ -3,11 +3,11 @@ import { Component, ContentChild, TemplateRef } from '@angular/core';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 
 @Component({
-  selector: 'app-actionbar',
+  selector: 'app-page-actionbar',
   imports: [NgTemplateOutlet, NzAffixModule],
-  templateUrl: './actionbar.component.html',
-  styleUrl: './actionbar.component.scss',
+  templateUrl: './page-actionbar.component.html',
+  styleUrl: './page-actionbar.component.scss',
 })
-export class ActionbarComponent {
+export class PageActionbarComponent {
   @ContentChild('right') right: TemplateRef<any> | null = null;
 }

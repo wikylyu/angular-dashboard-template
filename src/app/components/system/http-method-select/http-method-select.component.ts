@@ -8,19 +8,19 @@ import {
 import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @Component({
-  selector: 'app-api-method-select',
+  selector: 'app-http-method-select',
   imports: [NzSelectModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './api-method-select.component.html',
-  styleUrl: './api-method-select.component.scss',
+  templateUrl: './http-method-select.component.html',
+  styleUrl: './http-method-select.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ApiMethodSelectComponent),
+      useExisting: forwardRef(() => HttpMethodSelectComponent),
       multi: true,
     },
   ],
 })
-export class ApiMethodSelectComponent implements ControlValueAccessor {
+export class HttpMethodSelectComponent implements ControlValueAccessor {
   methods: string[] = ['GET', 'POST', 'PUT', 'DELETE'];
   value: string = '';
 
