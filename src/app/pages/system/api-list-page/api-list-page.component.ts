@@ -6,7 +6,9 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { AdminUserLabelComponent } from '../../../components/admin/admin-user-label/admin-user-label.component';
 import { CardComponent } from '../../../components/common/card/card.component';
 import { CreateButtonComponent } from '../../../components/common/create-button/create-button.component';
 import { SearchButtonComponent } from '../../../components/common/search-button/search-button.component';
@@ -16,6 +18,7 @@ import { ApiMethodSelectComponent } from '../../../components/system/api-method-
 import { ApiMethodComponent } from '../../../components/system/api-method/api-method.component';
 import { EndpointPathSelectComponent } from '../../../components/system/endpoint-path-select/endpoint-path-select.component';
 import { PermissionLabelComponent } from '../../../components/system/permission-label/permission-label.component';
+import { UpdateApiModalComponent } from '../../../components/system/update-api-modal/update-api-modal.component';
 import { Api } from '../../../models/system';
 import { SystemApiService } from '../../../services/apis/system-api.service';
 
@@ -29,6 +32,7 @@ import { SystemApiService } from '../../../services/apis/system-api.service';
     ActionbarComponent,
     ApiMethodSelectComponent,
     FormsModule,
+    NzModalModule,
     NzButtonModule,
     CreateButtonComponent,
     EndpointPathSelectComponent,
@@ -39,6 +43,7 @@ import { SystemApiService } from '../../../services/apis/system-api.service';
     NzDropDownModule,
     ApiMethodComponent,
     NzIconModule,
+    AdminUserLabelComponent,
   ],
   templateUrl: './api-list-page.component.html',
   styleUrl: './api-list-page.component.scss',
@@ -52,7 +57,10 @@ export class ApiListPageComponent implements OnInit {
   items: Api[] = [];
   loading: boolean = false;
 
-  constructor(private systemApi: SystemApiService) {}
+  constructor(
+    private systemApi: SystemApiService,
+    private modalService: NzModalService
+  ) {}
 
   ngOnInit(): void {
     this.search();
@@ -73,24 +81,6 @@ export class ApiListPageComponent implements OnInit {
         page_size: this.pageSize,
       });
       this.items = r.items;
-      // this.items = [
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      //   ...r.items,
-      // ];
       this.total = r.total;
       this.page = r.page;
       this.pageSize = r.page_size;
@@ -100,5 +90,35 @@ export class ApiListPageComponent implements OnInit {
     }
   }
 
-  update(data: any) {}
+  update(data: Api | undefined = undefined) {
+    this.modalService
+      .create({
+        nzContent: UpdateApiModalComponent,
+        nzWidth: '640px',
+        nzData: data ? Object.assign({}, data) : undefined,
+      })
+      .afterClose.subscribe((r) => {
+        if (r) {
+          this.findApis();
+        }
+      });
+  }
+
+  delete(data: Api) {
+    this.modalService.confirm({
+      nzTitle: '删除API',
+      nzContent: '是否确认删除该API?',
+      nzOkDanger: true,
+      nzOnOk: () => this.deleteApi(data),
+    });
+  }
+
+  async deleteApi(data: Api) {
+    try {
+      await this.systemApi.deleteApi(data.id);
+    } catch (error) {
+    } finally {
+      this.findApis();
+    }
+  }
 }

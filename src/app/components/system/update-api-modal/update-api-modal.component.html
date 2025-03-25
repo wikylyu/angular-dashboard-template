@@ -1,0 +1,44 @@
+<div *nzModalTitle>
+  {{ data?.id ? "编辑API" : "新建API" }}
+</div>
+
+<form nz-form [formGroup]="formGroup">
+  <div nz-row>
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>方法</nz-form-label>
+        <nz-form-control nzErrorTip="请选择方法">
+          <app-api-method-select
+            formControlName="method"
+          ></app-api-method-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="16">
+      <nz-form-item>
+        <nz-form-label>路径</nz-form-label>
+        <nz-form-control nzErrorTip="请选择路由">
+          <app-endpoint-path-select
+            formControlName="path"
+            [method]="formGroup.value.method"
+          ></app-endpoint-path-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <nz-form-item>
+    <nz-form-label>权限</nz-form-label>
+    <nz-form-control>
+      <app-permission-multiple-select
+        formControlName="permission_ids"
+      ></app-permission-multiple-select>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<div *nzModalFooter>
+  <button nz-button (click)="close()" [nzLoading]="loading">取消</button>
+  <button nz-button nzType="primary" (click)="onOk()" [nzLoading]="loading">
+    确定
+  </button>
+</div>

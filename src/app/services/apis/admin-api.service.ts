@@ -42,6 +42,11 @@ export class AdminApiService {
     return this.http.fget(url);
   }
 
+  getAdminUser(id: number): Promise<AdminUser> {
+    const url = this.buildurl(`/user/${id}`);
+    return this.http.fget(url);
+  }
+
   login({
     username,
     password,

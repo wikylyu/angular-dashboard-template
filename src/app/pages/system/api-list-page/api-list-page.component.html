@@ -4,7 +4,6 @@
       <app-api-method-select [(ngModel)]="queryMethod"></app-api-method-select>
     </nz-input-group>
     <nz-input-group nzAddOnBefore="路径">
-      <!-- <input nz-input (keydown.enter)="search()" [(ngModel)]="query" /> -->
       <app-endpoint-path-select
         [(ngModel)]="queryPath"
         [method]="queryMethod"
@@ -16,7 +15,7 @@
     ></app-search-button>
 
     <ng-template #right>
-      <app-create-button></app-create-button>
+      <app-create-button (create)="update()"></app-create-button>
     </ng-template>
   </app-actionbar>
 
@@ -40,6 +39,7 @@
           <th>Method</th>
           <th>Path</th>
           <th>权限</th>
+          <th>创建人</th>
           <th>创建时间</th>
           <th>操作</th>
         </tr>
@@ -62,6 +62,9 @@
             }
           </td>
           <td>
+            <app-admin-user-label [id]="data.created_by"></app-admin-user-label>
+          </td>
+          <td>
             {{ data.created_at | date : "short" }}
           </td>
           <td>
@@ -71,6 +74,8 @@
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu>
                 <li nz-menu-item (click)="update(data)">编辑</li>
+                <li nz-menu-divider></li>
+                <li nz-menu-item nzDanger (click)="delete(data)">删除</li>
               </ul>
             </nz-dropdown-menu>
           </td>

@@ -94,4 +94,40 @@ export class SystemApiService {
     const url = this.buildurl(`/apis`, { method, path, page, page_size });
     return this.http.fget(url);
   }
+
+  createApi({
+    method,
+    path,
+    permission_ids,
+  }: {
+    method: string;
+    path: string;
+    permission_ids: number[];
+  }) {
+    const url = this.buildurl(`/api`);
+    const body = { method, path, permission_ids };
+    return this.http.post(url, body);
+  }
+
+  updateApi(
+    id: number,
+    {
+      method,
+      path,
+      permission_ids,
+    }: {
+      method: string;
+      path: string;
+      permission_ids: number[];
+    }
+  ) {
+    const url = this.buildurl(`/api/${id}`);
+    const body = { method, path, permission_ids };
+    return this.http.put(url, body);
+  }
+
+  deleteApi(id: number) {
+    const url = this.buildurl(`/api/${id}`);
+    return this.http.delete(url);
+  }
 }

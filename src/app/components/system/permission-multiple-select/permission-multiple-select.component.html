@@ -1,0 +1,15 @@
+<app-permission-select
+  [(ngModel)]="permID"
+  (ngModelChange)="onPermissionSelected()"
+></app-permission-select>
+
+<div class="perms">
+  @for (item of value; track $index) {
+  <div class="perm">
+    <app-permission-label [id]="item"></app-permission-label>
+    <a nz-button nzSize="small" nzDanger (click)="remove($index)">
+      <span nz-icon nzType="delete"></span>
+    </a>
+  </div>
+  }
+</div>

@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  div.perms {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
