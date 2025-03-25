@@ -1,68 +1,27 @@
 <div class="scrollable" [ngClass]="{ collapsed: isCollapsed }">
   <ul nz-menu [nzMode]="isCollapsed ? 'vertical' : 'inline'">
-    <li nz-submenu nzTitle="Dashboard" nzIcon="dashboard" appSaveMenuOpenState>
-      <ul>
-        <li nz-menu-item>销量趋势</li>
-        <li nz-menu-item>数据统计</li>
-      </ul>
-    </li>
-    <li nz-submenu nzTitle="商品管理" nzIcon="google" appSaveMenuOpenState>
-      <ul>
-        <li nz-menu-item>商品列表</li>
-      </ul>
-    </li>
-    <li nz-submenu nzTitle="仓储管理" nzIcon="windows" appSaveMenuOpenState>
-      <ul>
-        <li nz-menu-item>仓库列表</li>
-        <li nz-menu-item>采购单</li>
-        <li nz-menu-item>入库单</li>
-        <li nz-menu-item>出库单</li>
-      </ul>
-    </li>
+    @for (menu of menus; track $index) { @if
+    (!menu.is_superuser||profile?.is_superuser) {
     <li
       nz-submenu
-      nzTitle="订单管理"
-      nzIcon="money-collect"
+      [nzTitle]="menu.name"
+      [nzIcon]="menu.icon"
       appSaveMenuOpenState
     >
       <ul>
-        <li nz-menu-item>订单列表</li>
-      </ul>
-    </li>
-    <li
-      nz-submenu
-      nzTitle="账号管理"
-      nzIcon="usergroup-add"
-      appSaveMenuOpenState
-    >
-      <ul>
-        <li nz-menu-item>账号列表</li>
-        <li nz-menu-item>角色管理</li>
-      </ul>
-    </li>
-
-    @if (profile?.is_superuser) {
-    <li nz-submenu nzTitle="系统管理" nzIcon="setting" appSaveMenuOpenState>
-      <ul>
+        @for (item of menu.items; track $index) {
         <li
           nz-menu-item
-          routerLink="/dashboard/system/apis"
+          routerLink="/dashboard{{ menu.link }}{{ item.link }}"
           nzMatchRouter
           routerLinkActive="active"
         >
-          接口列表
+          {{ item.name }}
         </li>
-        <li
-          nz-menu-item
-          routerLink="/dashboard/system/permissions"
-          nzMatchRouter
-          routerLinkActive="active"
-        >
-          权限设置
-        </li>
+        }
       </ul>
     </li>
-    }
+    } }
   </ul>
 </div>
 <button

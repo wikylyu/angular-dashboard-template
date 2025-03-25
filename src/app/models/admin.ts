@@ -1,5 +1,10 @@
 import { BaseModel } from './base';
 
+export enum AdminUserStatus {
+  ACTIVE = 'active',
+  BANNED = 'banned',
+}
+
 export interface AdminConfig {
   onboarding: boolean;
   appname: string;
@@ -14,6 +19,6 @@ export interface AdminUser extends BaseModel {
   name: string;
   email: string;
   phone: string;
-  status: string;
+  status: AdminUserStatus;
   is_superuser: boolean;
 }

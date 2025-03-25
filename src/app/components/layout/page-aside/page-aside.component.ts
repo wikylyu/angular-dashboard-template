@@ -7,6 +7,19 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SaveMenuOpenStateDirective } from '../../../directives/save-menu-open-state.directive';
 import { AdminService } from '../../../services/admin.service';
 
+interface AsideMenu {
+  name: string;
+  icon: string;
+  link: string;
+  items: AsideMenuItem[];
+  is_superuser?: boolean;
+}
+
+interface AsideMenuItem {
+  name: string;
+  link: string;
+}
+
 @Component({
   selector: 'aside[app-page-aside]',
   imports: [
@@ -28,4 +41,35 @@ export class PageAsideComponent {
   get profile() {
     return this.adminService.profile();
   }
+
+  menus: AsideMenu[] = [
+    {
+      name: '账号管理',
+      icon: 'usergroup-add',
+      link: '/admin',
+      items: [
+        {
+          name: '账号列表',
+          link: '/users',
+        },
+        { name: '角色管理', link: '/roles' },
+      ],
+    },
+    {
+      name: '系统管理',
+      icon: 'setting',
+      link: '/system',
+      is_superuser: true,
+      items: [
+        {
+          name: '接口列表',
+          link: '/apis',
+        },
+        {
+          name: '权限设置',
+          link: '/permissions',
+        },
+      ],
+    },
+  ];
 }

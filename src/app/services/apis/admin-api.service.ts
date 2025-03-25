@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AdminConfig, AdminUser } from '../../models/admin';
+import { Pagination } from '../../models/base';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -83,5 +84,20 @@ export class AdminApiService {
   updatePassword({ password, captcha }: { password: string; captcha: string }) {
     const url = this.buildurl('/password');
     return this.http.put(url, { password, captcha });
+  }
+
+  findAdminUsers({
+    query,
+    status,
+    page,
+    page_size,
+  }: {
+    query: string;
+    status: string;
+    page: number;
+    page_size: number;
+  }): Promise<Pagination<AdminUser>> {
+    const url = this.buildurl(`/users`, { query, status, page, page_size });
+    return this.http.fget(url);
   }
 }

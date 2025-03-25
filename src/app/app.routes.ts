@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { AdminRoleListPageComponent } from './pages/admin/admin-role-list-page/admin-role-list-page.component';
+import { AdminUserListPageComponent } from './pages/admin/admin-user-list-page/admin-user-list-page.component';
 import { DashboardOverviewPageComponent } from './pages/dashboard/dashboard-overview-page/dashboard-overview-page.component';
 import { DashboardPageComponent } from './pages/dashboard/dashboard-page/dashboard-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
@@ -32,6 +34,21 @@ export const routes: Routes = [
         path: 'overview',
         pathMatch: 'full',
         component: DashboardOverviewPageComponent,
+      },
+      {
+        path: 'admin',
+        children: [
+          {
+            path: 'users',
+            pathMatch: 'full',
+            component: AdminUserListPageComponent,
+          },
+          {
+            path: 'roles',
+            pathMatch: 'full',
+            component: AdminRoleListPageComponent,
+          },
+        ],
       },
       {
         path: 'system',

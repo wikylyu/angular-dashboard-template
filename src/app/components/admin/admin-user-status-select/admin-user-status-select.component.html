@@ -1,0 +1,13 @@
+<nz-select
+  nzAllowClear
+  [(ngModel)]="value"
+  (ngModelChange)="onChange($event)"
+  nzPlaceHolder="请选择"
+>
+  @for (status of statuses; track $index) {
+  <nz-option
+    [nzLabel]="status | adminUserStatusName"
+    [nzValue]="status"
+  ></nz-option>
+  }
+</nz-select>
