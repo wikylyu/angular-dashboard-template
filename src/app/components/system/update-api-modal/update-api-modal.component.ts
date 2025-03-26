@@ -40,7 +40,7 @@ export class UpdateApiModalComponent {
     private fb: FormBuilder,
     private systemApi: SystemApiService,
     private modalRef: NzModalRef<UpdateApiModalComponent>,
-    private message: NzMessageService,
+    private messageService: NzMessageService,
     @Inject(NZ_MODAL_DATA) public data: Api | undefined
   ) {
     this.formGroup = this.fb.group({
@@ -76,16 +76,16 @@ export class UpdateApiModalComponent {
         path: values.path,
         permission_ids: values.permission_ids,
       });
-      this.message.success('创建成功');
+      this.messageService.success('创建成功');
       this.close(r);
     } catch (error) {
       if (error instanceof ApiException) {
         if (error.status === ApiStatus.API_EXISTS) {
-          this.message.warning('API已存在');
+          this.messageService.warning('API已存在');
         } else if (error.status === ApiStatus.ROUTE_NOT_FOUND) {
-          this.message.warning('路由不存在');
+          this.messageService.warning('路由不存在');
         } else if (error.status !== ApiStatus.OK) {
-          this.message.warning('未知错误');
+          this.messageService.warning('未知错误');
         }
       }
     } finally {
@@ -101,16 +101,16 @@ export class UpdateApiModalComponent {
         path: values.path,
         permission_ids: values.permission_ids,
       });
-      this.message.success('更新成功');
+      this.messageService.success('更新成功');
       this.close(r);
     } catch (error) {
       if (error instanceof ApiException) {
         if (error.status === ApiStatus.API_EXISTS) {
-          this.message.warning('API已存在');
+          this.messageService.warning('API已存在');
         } else if (error.status === ApiStatus.ROUTE_NOT_FOUND) {
-          this.message.warning('路由不存在');
+          this.messageService.warning('路由不存在');
         } else if (error.status !== ApiStatus.OK) {
-          this.message.warning('未知错误');
+          this.messageService.warning('未知错误');
         }
       }
     } finally {

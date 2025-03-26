@@ -39,7 +39,7 @@ export class UpdatePermissionModalComponent {
     @Inject(NZ_MODAL_DATA) public data: Permission | undefined,
     private fb: FormBuilder,
     private systemApi: SystemApiService,
-    private message: NzMessageService
+    private messageService: NzMessageService
   ) {
     this.formGroup = this.fb.group({
       name: [data?.name || '', [Validators.required]],
@@ -76,16 +76,16 @@ export class UpdatePermissionModalComponent {
         parent_id: values.parent_id,
         remark: values.remark,
       });
-      this.message.success('创建成功');
+      this.messageService.success('创建成功');
       this.close(r);
     } catch (error) {
       if (error instanceof ApiException) {
         if (error.status === ApiStatus.PERMISSION_CODE_DUPLICATED) {
-          this.message.warning('权限代码重复');
+          this.messageService.warning('权限代码重复');
         } else if (error.status === ApiStatus.PERMISSION_PARENT_INVALID) {
-          this.message.warning('无法设置子结点为自己的父权限');
+          this.messageService.warning('无法设置子结点为自己的父权限');
         } else if (error.status !== ApiStatus.OK) {
-          this.message.warning('未知错误');
+          this.messageService.warning('未知错误');
         }
       }
     } finally {
@@ -102,16 +102,16 @@ export class UpdatePermissionModalComponent {
         parent_id: values.parent_id,
         remark: values.remark,
       });
-      this.message.success('更新成功');
+      this.messageService.success('更新成功');
       this.close(r);
     } catch (error) {
       if (error instanceof ApiException) {
         if (error.status === ApiStatus.PERMISSION_CODE_DUPLICATED) {
-          this.message.warning('权限代码重复');
+          this.messageService.warning('权限代码重复');
         } else if (error.status === ApiStatus.PERMISSION_PARENT_INVALID) {
-          this.message.warning('无法设置子结点为自己的父权限');
+          this.messageService.warning('无法设置子结点为自己的父权限');
         } else if (error.status !== ApiStatus.OK) {
-          this.message.warning('未知错误');
+          this.messageService.warning('未知错误');
         }
       }
     } finally {

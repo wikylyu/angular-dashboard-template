@@ -14,8 +14,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
-import { AdminApiService } from '../../../services/apis/admin-api.service';
 import { ApiException } from '../../../services/apis/api.interceptor';
+import { AuthApiService } from '../../../services/apis/auth-api.service';
 import { ApiStatus } from '../../../services/apis/status';
 import { validateFormGroup } from '../../../utils/form';
 import { CaptchaInputComponent } from '../../common/captcha-input/captcha-input.component';
@@ -39,8 +39,8 @@ export class UpdateAdminPasswordModalComponent {
   constructor(
     private modalRef: NzModalRef<UpdateAdminPasswordModalComponent>,
     private fb: FormBuilder,
-    private adminApi: AdminApiService,
-    private message: NzMessageService
+    private authApi: AuthApiService,
+    private messageService: NzMessageService
   ) {
     this.formGroup = this.fb.group({
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -52,7 +52,7 @@ export class UpdateAdminPasswordModalComponent {
   captchaDate: Date = new Date();
 
   get captchaUrl() {
-    return this.adminApi.passwordCaptcahaUrl;
+    return this.authApi.passwordCaptcahaUrl;
   }
 
   passwordMatchValidator: ValidatorFn = (
@@ -77,16 +77,16 @@ export class UpdateAdminPasswordModalComponent {
     }
     try {
       this.loading = true;
-      const r = await this.adminApi.updatePassword({
+      const r = await this.authApi.updatePassword({
         password: value.password,
         captcha: value.captcha,
       });
-      this.message.success('修改成功');
+      this.messageService.success('修改成功');
       this.close(r);
     } catch (error) {
       if (error instanceof ApiException) {
         if (error.status === ApiStatus.ADMIN_CAPTCHA_INCORRECT) {
-          this.message.warning('验证码错误');
+          this.messageService.warning('验证码错误');
           this.captchaDate = new Date();
         }
       }

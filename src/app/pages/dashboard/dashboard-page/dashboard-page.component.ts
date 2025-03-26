@@ -5,7 +5,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { PageAsideComponent } from '../../../components/layout/page-aside/page-aside.component';
 import { PageHeaderComponent } from '../../../components/layout/page-header/page-header.component';
-import { AdminService } from '../../../services/admin.service';
+import { ConfigService } from '../../../services/config.service';
 import { TitleService } from '../../../services/title.service';
 
 @Component({
@@ -23,16 +23,19 @@ import { TitleService } from '../../../services/title.service';
 })
 export class DashboardPageComponent implements OnInit {
   isCollapsed: boolean = false;
-  constructor(private title: TitleService, private adminService: AdminService) {
+  constructor(
+    private title: TitleService,
+    private configService: ConfigService
+  ) {
     this.title.setTitle('欢迎');
   }
 
   get appname() {
-    return this.adminService.config()?.appname || 'App';
+    return this.configService.config()?.appname || 'App';
   }
 
   get copyright() {
-    return this.adminService.config()?.copyright || '';
+    return this.configService.config()?.copyright || '';
   }
 
   ngOnInit(): void {}

@@ -10,3 +10,11 @@ export interface Pagination<T> {
   total: number;
   items: T[];
 }
+
+export interface Config {
+  onboarding: boolean;
+  appname: string;
+  copyright: string;
+  version: string;
+  admin_username_pattern: string;
+}

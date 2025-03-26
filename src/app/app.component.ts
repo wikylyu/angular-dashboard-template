@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { AdminService } from './services/admin.service';
-import { AdminApiService } from './services/apis/admin-api.service';
+import { AuthService } from './services/auth.service';
+import { ConfigService } from './services/config.service';
 
 @Component({
   selector: 'main[app-root]',
@@ -14,9 +14,9 @@ export class AppComponent implements OnInit {
   loading: boolean = false;
 
   constructor(
-    private adminService: AdminService,
+    private authService: AuthService,
     private router: Router,
-    private adminApi: AdminApiService
+    private configService: ConfigService
   ) {}
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   async check() {
     try {
       this.loading = true;
-      const cfg = await this.adminService.getAdminConfig();
+      const cfg = await this.configService.getConfig();
       console.log(cfg);
       if (!cfg) {
         this.router.navigate(['/error'], { replaceUrl: true });
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/setup'], { replaceUrl: true });
         return;
       }
-      await this.adminService.getProfile(); // 获取登录信息成功，跳转到 dashboard，否则会自动跳转到login
+      await this.authService.getProfile(); // 获取登录信息成功，跳转到 dashboard，否则会自动跳转到login
       if (this.router.url.split('?')[0] === '/') {
         this.router.navigate(['/dashboard'], { replaceUrl: true });
       }

@@ -2,7 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { AdminService } from '../../../services/admin.service';
+import { ConfigService } from '../../../services/config.service';
 import { AdminAccountMenuButtonComponent } from '../../admin/admin-account-menu-button/admin-account-menu-button.component';
 
 @Component({
@@ -17,13 +17,13 @@ import { AdminAccountMenuButtonComponent } from '../../admin/admin-account-menu-
   styleUrl: './page-header.component.scss',
 })
 export class PageHeaderComponent {
-  constructor(private adminService: AdminService) {}
+  constructor(private configService: ConfigService) {}
 
   get appname() {
-    return this.adminService.config()?.appname || 'App';
+    return this.configService.config()?.appname || 'App';
   }
 
   get version() {
-    return this.adminService.config()?.version;
+    return this.configService.config()?.version;
   }
 }

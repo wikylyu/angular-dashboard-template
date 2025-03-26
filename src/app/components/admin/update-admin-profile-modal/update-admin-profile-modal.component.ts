@@ -11,8 +11,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
-import { AdminService } from '../../../services/admin.service';
-import { AdminApiService } from '../../../services/apis/admin-api.service';
+import { AuthApiService } from '../../../services/apis/auth-api.service';
+import { AuthService } from '../../../services/auth.service';
 import { validateFormGroup } from '../../../utils/form';
 
 @Component({
@@ -32,10 +32,10 @@ export class UpdateAdminProfileModalComponent implements OnInit {
   formGroup: FormGroup;
   constructor(
     private modalRef: NzModalRef<UpdateAdminProfileModalComponent>,
-    private adminService: AdminService,
+    private authService: AuthService,
     private fb: FormBuilder,
-    private adminApi: AdminApiService,
-    private message: NzMessageService
+    private authApi: AuthApiService,
+    private messageService: NzMessageService
   ) {
     this.formGroup = this.fb.group({
       username: [{ value: '', disabled: true }, [Validators.required]],
@@ -44,7 +44,7 @@ export class UpdateAdminProfileModalComponent implements OnInit {
       email: ['', []],
     });
     effect(() => {
-      const profile = adminService.profile();
+      const profile = authService.profile();
       this.formGroup.patchValue({
         username: profile?.username || '',
         name: profile?.name || '',
@@ -55,7 +55,7 @@ export class UpdateAdminProfileModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.adminService.getProfile();
+    this.authService.getProfile();
   }
 
   close(r: any = null) {
@@ -70,14 +70,14 @@ export class UpdateAdminProfileModalComponent implements OnInit {
     }
     try {
       this.loading = true;
-      const r = await this.adminApi.updateProfile({
+      const r = await this.authApi.updateProfile({
         name: value.name,
         email: value.email,
         phone: value.phone,
       });
-      this.adminService.profile.set(r);
+      this.authService.profile.set(r);
       this.close(r);
-      this.message.success('保存成功');
+      this.messageService.success('保存成功');
     } catch (error) {
     } finally {
       this.loading = false;

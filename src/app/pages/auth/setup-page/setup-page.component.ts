@@ -14,8 +14,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { AdminService } from '../../../services/admin.service';
-import { AdminApiService } from '../../../services/apis/admin-api.service';
+import { AuthApiService } from '../../../services/apis/auth-api.service';
+import { ConfigService } from '../../../services/config.service';
 import { TitleService } from '../../../services/title.service';
 import { validateFormGroup } from '../../../utils/form';
 
@@ -39,10 +39,10 @@ export class SetupPageComponent {
   constructor(
     private title: TitleService,
     private fb: FormBuilder,
-    private adminService: AdminService,
-    private adminApi: AdminApiService,
-    private message: NzMessageService,
-    private router: Router
+    private configService: ConfigService,
+    private messageService: NzMessageService,
+    private router: Router,
+    private authApi: AuthApiService
   ) {
     this.title.setTitle('创建管理员账户');
 
@@ -53,7 +53,7 @@ export class SetupPageComponent {
           Validators.required,
           Validators.minLength(4),
           Validators.pattern(
-            this.adminService.config()?.admin_username_pattern || ''
+            this.configService.config()?.admin_username_pattern || ''
           ),
         ],
       ],
@@ -63,7 +63,7 @@ export class SetupPageComponent {
   }
 
   get appname() {
-    return this.adminService.config()?.appname || 'App';
+    return this.configService.config()?.appname || 'App';
   }
 
   loading: boolean = false;
@@ -74,13 +74,13 @@ export class SetupPageComponent {
     }
     try {
       this.loading = true;
-      const r = await this.adminApi.createSuperuser({
+      const r = await this.authApi.createSuperuser({
         username: value.username,
         password: value.password,
         name: value.name,
       });
       console.log(r);
-      this.message.success('创建成功，请登录');
+      this.messageService.success('创建成功，请登录');
       this.router.navigate(['/login'], { replaceUrl: true });
     } catch (error) {
     } finally {

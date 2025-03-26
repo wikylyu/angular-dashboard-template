@@ -5,7 +5,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SaveMenuOpenStateDirective } from '../../../directives/save-menu-open-state.directive';
-import { AdminService } from '../../../services/admin.service';
+import { AuthService } from '../../../services/auth.service';
 
 interface AsideMenu {
   name: string;
@@ -36,10 +36,10 @@ interface AsideMenuItem {
 export class PageAsideComponent {
   isCollapsed: boolean = false;
 
-  constructor(private adminService: AdminService) {}
+  constructor(private authService: AuthService) {}
 
   get profile() {
-    return this.adminService.profile();
+    return this.authService.profile();
   }
 
   menus: AsideMenu[] = [

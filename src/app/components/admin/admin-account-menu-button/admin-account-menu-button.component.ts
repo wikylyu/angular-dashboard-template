@@ -4,8 +4,8 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
-import { AdminService } from '../../../services/admin.service';
-import { AdminApiService } from '../../../services/apis/admin-api.service';
+import { AuthApiService } from '../../../services/apis/auth-api.service';
+import { AuthService } from '../../../services/auth.service';
 import { UpdateAdminPasswordModalComponent } from '../update-admin-password-modal/update-admin-password-modal.component';
 import { UpdateAdminProfileModalComponent } from '../update-admin-profile-modal/update-admin-profile-modal.component';
 
@@ -17,18 +17,18 @@ import { UpdateAdminProfileModalComponent } from '../update-admin-profile-modal/
 })
 export class AdminAccountMenuButtonComponent implements OnInit {
   constructor(
-    private adminService: AdminService,
-    private adminApi: AdminApiService,
+    private authService: AuthService,
+    private authApi: AuthApiService,
     private modalService: NzModalService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.adminService.getProfile();
+    this.authService.getProfile();
   }
 
   get profile() {
-    return this.adminService.profile();
+    return this.authService.profile();
   }
 
   openAdminProfileModal() {
@@ -56,7 +56,7 @@ export class AdminAccountMenuButtonComponent implements OnInit {
   async doLogout() {
     try {
       this.loading = true;
-      await this.adminApi.logout();
+      await this.authApi.logout();
       this.router.navigate(['/login'], { replaceUrl: true });
     } catch (error) {
     } finally {

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AdminService } from './admin.service';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TitleService {
-  constructor(private adminService: AdminService, private title: Title) {}
+  constructor(private configService: ConfigService, private title: Title) {}
 
   setTitle(title: string) {
-    const appname = this.adminService.config()?.appname || 'App';
+    const appname = this.configService.config()?.appname || 'App';
     if (!title) {
       title = appname;
     } else {
