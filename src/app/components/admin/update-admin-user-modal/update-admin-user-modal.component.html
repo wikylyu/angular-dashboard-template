@@ -1,0 +1,69 @@
+<div *nzModalTitle>编辑账号</div>
+
+<form nz-form [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">用户名</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzErrorTip="请输入用户名">
+      <input
+        nz-input
+        type="text"
+        formControlName="username"
+        placeholder="登录用户名"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">密码</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzErrorTip="">
+      <input
+        nz-input
+        type="password"
+        formControlName="password"
+        placeholder="为空表示不修改密码，否则修改"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">状态</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzErrorTip="请选择账号状态">
+      <app-admin-user-status-select
+        formControlName="status"
+      ></app-admin-user-status-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">姓名</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzErrorTip="请输入姓名">
+      <input nz-input type="text" formControlName="name" placeholder="展示名" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">邮箱</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzErrorTip="">
+      <input
+        nz-input
+        type="text"
+        formControlName="email"
+        placeholder="联系邮箱"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">手机号</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzErrorTip="">
+      <input
+        nz-input
+        type="text"
+        formControlName="phone"
+        placeholder="联系手机号"
+      />
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<div *nzModalFooter>
+  <button nz-button (click)="close()">取消</button>
+  <button nz-button nzType="primary" (click)="submit()" [nzLoading]="loading">
+    确认
+  </button>
+</div>

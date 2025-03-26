@@ -29,9 +29,9 @@ export class AdminUserStatusSelectComponent implements ControlValueAccessor {
     AdminUserStatus.BANNED,
   ];
 
-  onChange: (value: string) => void = () => {};
+  onChange: (value: AdminUserStatus) => void = () => {};
   onTouched: () => void = () => {};
-  writeValue(value: string): void {
+  writeValue(value: AdminUserStatus): void {
     this.value = value || ''; // 外部通过 ngModel 设置值时调用
   }
 

@@ -4,11 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { AdminUserLabelComponent } from '../../../components/admin/admin-user-label/admin-user-label.component';
 import { AdminUserStatusSelectComponent } from '../../../components/admin/admin-user-status-select/admin-user-status-select.component';
 import { AdminUserStatusComponent } from '../../../components/admin/admin-user-status/admin-user-status.component';
+import { CreateAdminUserModalComponent } from '../../../components/admin/create-admin-user-modal/create-admin-user-modal.component';
+import { UpdateAdminUserModalComponent } from '../../../components/admin/update-admin-user-modal/update-admin-user-modal.component';
 import { CardComponent } from '../../../components/common/card/card.component';
 import { CreateButtonComponent } from '../../../components/common/create-button/create-button.component';
 import { SearchButtonComponent } from '../../../components/common/search-button/search-button.component';
@@ -16,6 +19,7 @@ import { PageActionbarComponent } from '../../../components/layout/page-actionba
 import { PageContentComponent } from '../../../components/layout/page-content/page-content.component';
 import { AdminUser } from '../../../models/admin';
 import { AdminApiService } from '../../../services/apis/admin-api.service';
+import { deepCopy } from '../../../utils/data';
 
 @Component({
   selector: 'app-admin-user-list-page',
@@ -35,6 +39,7 @@ import { AdminApiService } from '../../../services/apis/admin-api.service';
     AdminUserStatusComponent,
     DatePipe,
     NzToolTipModule,
+    NzModalModule,
   ],
   templateUrl: './admin-user-list-page.component.html',
   styleUrl: './admin-user-list-page.component.scss',
@@ -47,7 +52,10 @@ export class AdminUserListPageComponent implements OnInit {
   total: number = 0;
   items: AdminUser[] = [];
   loading: boolean = false;
-  constructor(private adminApi: AdminApiService) {}
+  constructor(
+    private adminApi: AdminApiService,
+    private modalService: NzModalService
+  ) {}
 
   ngOnInit(): void {
     this.search();
@@ -77,7 +85,28 @@ export class AdminUserListPageComponent implements OnInit {
     }
   }
 
-  update(data: AdminUser | undefined = undefined) {}
+  create() {
+    this.modalService
+      .create({
+        nzContent: CreateAdminUserModalComponent,
+        nzWidth: '480px',
+      })
+      .afterClose.subscribe((r) => {
+        this.findAdminUsers();
+      });
+  }
+
+  update(data: AdminUser) {
+    this.modalService
+      .create({
+        nzContent: UpdateAdminUserModalComponent,
+        nzWidth: '480px',
+        nzData: deepCopy(data),
+      })
+      .afterClose.subscribe((r) => {
+        this.findAdminUsers();
+      });
+  }
 
   view(data: AdminUser) {}
 }

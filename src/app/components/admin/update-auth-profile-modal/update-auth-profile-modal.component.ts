@@ -16,7 +16,7 @@ import { AuthService } from '../../../services/auth.service';
 import { validateFormGroup } from '../../../utils/form';
 
 @Component({
-  selector: 'app-update-admin-profile-modal',
+  selector: 'app-update-auth-profile-modal',
   imports: [
     NzModalModule,
     NzButtonModule,
@@ -25,13 +25,13 @@ import { validateFormGroup } from '../../../utils/form';
     FormsModule,
     NzInputModule,
   ],
-  templateUrl: './update-admin-profile-modal.component.html',
-  styleUrl: './update-admin-profile-modal.component.scss',
+  templateUrl: './update-auth-profile-modal.component.html',
+  styleUrl: './update-auth-profile-modal.component.scss',
 })
-export class UpdateAdminProfileModalComponent implements OnInit {
+export class UpdateAuthProfileModalComponent implements OnInit {
   formGroup: FormGroup;
   constructor(
-    private modalRef: NzModalRef<UpdateAdminProfileModalComponent>,
+    private modalRef: NzModalRef<UpdateAuthProfileModalComponent>,
     private authService: AuthService,
     private fb: FormBuilder,
     private authApi: AuthApiService,
@@ -63,7 +63,7 @@ export class UpdateAdminProfileModalComponent implements OnInit {
   }
 
   loading: boolean = false;
-  async save() {
+  async submit() {
     const value = validateFormGroup(this.formGroup);
     if (!value) {
       return;

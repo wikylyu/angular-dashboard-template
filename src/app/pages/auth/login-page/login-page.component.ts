@@ -109,10 +109,10 @@ export class LoginPageComponent {
           this.messageService.warning('账号已被封禁');
         } else if (error.status === ApiStatus.ADMIN_CAPTCHA_INCORRECT) {
           this.messageService.warning('验证码错误');
-          this.captchaDate = new Date();
         } else {
           this.messageService.warning('未知错误');
         }
+        this.captchaDate = new Date();
       }
     } finally {
       this.loading = false;

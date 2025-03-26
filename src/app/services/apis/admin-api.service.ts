@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AdminUser } from '../../models/admin';
+import { AdminUser, AdminUserStatus } from '../../models/admin';
 import { Pagination } from '../../models/base';
 import { HttpService } from './http.service';
 
@@ -31,5 +31,51 @@ export class AdminApiService {
   }): Promise<Pagination<AdminUser>> {
     const url = this.buildurl(`/users`, { query, status, page, page_size });
     return this.http.fget(url);
+  }
+
+  createAdminUser({
+    username,
+    password,
+    name,
+    email,
+    phone,
+    status,
+  }: {
+    username: string;
+    password: string;
+    name: string;
+    email: string;
+    phone: string;
+    status: AdminUserStatus;
+  }) {
+    const url = this.buildurl(`/user`);
+    return this.http.post(url, {
+      username,
+      password,
+      name,
+      email,
+      phone,
+      status,
+    });
+  }
+
+  updateAdminUser(
+    id: number,
+    {
+      name,
+      email,
+      phone,
+      password,
+      status,
+    }: {
+      name: string;
+      email: string;
+      phone: string;
+      password: string;
+      status: AdminUserStatus;
+    }
+  ) {
+    const url = this.buildurl(`/user/${id}`);
+    return this.http.put(url, { name, email, phone, password, status });
   }
 }

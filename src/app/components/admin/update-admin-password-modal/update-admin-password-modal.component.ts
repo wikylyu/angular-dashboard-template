@@ -70,7 +70,7 @@ export class UpdateAdminPasswordModalComponent {
   }
 
   loading: boolean = false;
-  async save() {
+  async submit() {
     const value = validateFormGroup(this.formGroup);
     if (!value) {
       return;
