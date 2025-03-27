@@ -14,3 +14,10 @@ export interface AdminUser extends BaseModel {
   status: AdminUserStatus;
   is_superuser: boolean;
 }
+
+export interface AdminRole extends BaseModel {
+  id: number;
+  name: string;
+  remark: string;
+  permission_ids: number[];
+}

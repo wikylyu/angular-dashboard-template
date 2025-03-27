@@ -4,11 +4,18 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 10px;
+      gap: 20px;
       border-radius: var(--border-radius-base);
       box-shadow: var(--box-shadow-1);
       background-color: white;
       padding: 16px;
+
+      div.left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+      }
 
       ::ng-deep {
         input,

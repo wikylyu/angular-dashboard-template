@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AdminUser, AdminUserStatus } from '../../models/admin';
+import { AdminRole, AdminUser, AdminUserStatus } from '../../models/admin';
 import { Pagination } from '../../models/base';
 import { HttpService } from './http.service';
 
@@ -77,5 +77,43 @@ export class AdminApiService {
   ) {
     const url = this.buildurl(`/user/${id}`);
     return this.http.put(url, { name, email, phone, password, status });
+  }
+
+  createAdminRole({
+    name,
+    remark,
+    permission_ids,
+  }: {
+    name: string;
+    remark: string;
+    permission_ids: number[];
+  }) {
+    const url = this.buildurl(`/role`);
+    return this.http.post(url, { name, remark, permission_ids });
+  }
+
+  updateAdminRole(
+    id: number,
+    {
+      name,
+      remark,
+      permission_ids,
+    }: { name: string; remark: string; permission_ids: number[] }
+  ) {
+    const url = this.buildurl(`/role/${id}`);
+    return this.http.put(url, { name, remark, permission_ids });
+  }
+
+  findAdminRoles({
+    query,
+    page,
+    page_size,
+  }: {
+    query: string;
+    page: number;
+    page_size: number;
+  }): Promise<Pagination<AdminRole>> {
+    const url = this.buildurl(`/roles`, { query, page, page_size });
+    return this.http.fget(url);
   }
 }

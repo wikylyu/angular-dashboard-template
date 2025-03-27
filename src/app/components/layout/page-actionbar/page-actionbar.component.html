@@ -1,8 +1,8 @@
 <nz-affix [nzOffsetTop]="0" nzTarget="app-page-content">
   <div class="content">
-    <ng-content></ng-content>
-
-    <div class="flex-spacer"></div>
+    <div class="left flex-spacer">
+      <ng-content></ng-content>
+    </div>
 
     <ng-container [ngTemplateOutlet]="right"></ng-container>
   </div>

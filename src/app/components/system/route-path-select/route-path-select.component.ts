@@ -37,9 +37,11 @@ export class RoutePathSelectComponent
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['method']) {
-      this.value = '';
-      this.onChange('');
-      this.search('');
+      setTimeout(() => {
+        this.value = '';
+        this.onChange('');
+        this.search('');
+      });
     }
   }
 
