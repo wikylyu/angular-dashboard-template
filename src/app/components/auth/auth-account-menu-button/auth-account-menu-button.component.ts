@@ -6,16 +6,16 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { AuthApiService } from '../../../services/apis/auth-api.service';
 import { AuthService } from '../../../services/auth.service';
-import { UpdateAdminPasswordModalComponent } from '../update-admin-password-modal/update-admin-password-modal.component';
+import { UpdateAuthPasswordModalComponent } from '../update-auth-password-modal/update-auth-password-modal.component';
 import { UpdateAuthProfileModalComponent } from '../update-auth-profile-modal/update-auth-profile-modal.component';
 
 @Component({
-  selector: 'app-admin-account-menu-button',
+  selector: 'app-auth-account-menu-button',
   imports: [NzAvatarModule, NzMenuModule, NzDropDownModule, NzModalModule],
-  templateUrl: './admin-account-menu-button.component.html',
-  styleUrl: './admin-account-menu-button.component.scss',
+  templateUrl: './auth-account-menu-button.component.html',
+  styleUrl: './auth-account-menu-button.component.scss',
 })
-export class AdminAccountMenuButtonComponent implements OnInit {
+export class AuthAccountMenuButtonComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private authApi: AuthApiService,
@@ -40,7 +40,7 @@ export class AdminAccountMenuButtonComponent implements OnInit {
 
   openAdminPasswordModal() {
     this.modalService.create({
-      nzContent: UpdateAdminPasswordModalComponent,
+      nzContent: UpdateAuthPasswordModalComponent,
       nzWidth: '420px',
     });
   }
@@ -56,7 +56,7 @@ export class AdminAccountMenuButtonComponent implements OnInit {
   async doLogout() {
     try {
       this.loading = true;
-      await this.authApi.logout();
+      await this.authService.logout();
       this.router.navigate(['/login'], { replaceUrl: true });
     } catch (error) {
     } finally {

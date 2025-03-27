@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { ConfigService } from '../../../services/config.service';
-import { AdminAccountMenuButtonComponent } from '../../admin/admin-account-menu-button/admin-account-menu-button.component';
+import { AuthAccountMenuButtonComponent } from '../../auth/auth-account-menu-button/auth-account-menu-button.component';
 
 @Component({
   selector: 'header[app-page-header]',
   imports: [
     NgOptimizedImage,
-    AdminAccountMenuButtonComponent,
+    AuthAccountMenuButtonComponent,
     NzTagModule,
     RouterModule,
   ],

@@ -75,4 +75,13 @@ export class AuthApiService {
     const url = this.buildurl('/password');
     return this.http.put(url, { password, captcha });
   }
+
+  checkPermissions({
+    codes,
+  }: {
+    codes: string[];
+  }): Promise<Record<string, boolean>> {
+    const url = this.buildurl('/permissions', { codes });
+    return this.http.fget(url);
+  }
 }

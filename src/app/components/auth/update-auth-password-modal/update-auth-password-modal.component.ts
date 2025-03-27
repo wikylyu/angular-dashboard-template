@@ -21,7 +21,7 @@ import { validateFormGroup } from '../../../utils/form';
 import { CaptchaInputComponent } from '../../common/captcha-input/captcha-input.component';
 
 @Component({
-  selector: 'app-update-admin-password-modal',
+  selector: 'app-update-auth-password-modal',
   imports: [
     NzModalModule,
     NzButtonModule,
@@ -31,13 +31,13 @@ import { CaptchaInputComponent } from '../../common/captcha-input/captcha-input.
     NzInputModule,
     CaptchaInputComponent,
   ],
-  templateUrl: './update-admin-password-modal.component.html',
-  styleUrl: './update-admin-password-modal.component.scss',
+  templateUrl: './update-auth-password-modal.component.html',
+  styleUrl: './update-auth-password-modal.component.scss',
 })
-export class UpdateAdminPasswordModalComponent {
+export class UpdateAuthPasswordModalComponent {
   formGroup: FormGroup;
   constructor(
-    private modalRef: NzModalRef<UpdateAdminPasswordModalComponent>,
+    private modalRef: NzModalRef<UpdateAuthPasswordModalComponent>,
     private fb: FormBuilder,
     private authApi: AuthApiService,
     private messageService: NzMessageService
