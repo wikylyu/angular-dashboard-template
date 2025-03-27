@@ -79,7 +79,6 @@ export class SetupPageComponent {
         password: value.password,
         name: value.name,
       });
-      console.log(r);
       this.messageService.success('创建成功，请登录');
       this.router.navigate(['/login'], { replaceUrl: true });
     } catch (error) {

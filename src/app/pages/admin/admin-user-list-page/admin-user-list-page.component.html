@@ -43,8 +43,7 @@
           <th>用户名</th>
           <th>姓名</th>
           <th>状态</th>
-          <th>邮箱</th>
-          <th>手机号</th>
+          <th>角色</th>
           <th>创建人</th>
           <th>创建时间</th>
           <th>操作</th>
@@ -75,8 +74,9 @@
               [status]="data.status"
             ></app-admin-user-status>
           </td>
-          <td>{{ data.email }}</td>
-          <td>{{ data.phone }}</td>
+          <td>
+            <app-admin-user-roles [id]="data.id"></app-admin-user-roles>
+          </td>
           <td>
             <app-admin-user-label [id]="data.created_by"></app-admin-user-label>
           </td>
@@ -90,7 +90,6 @@
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu>
                 <li nz-menu-item (click)="view(data)">查看</li>
-
                 <li nz-menu-item (click)="update(data)">编辑</li>
               </ul>
             </nz-dropdown-menu>

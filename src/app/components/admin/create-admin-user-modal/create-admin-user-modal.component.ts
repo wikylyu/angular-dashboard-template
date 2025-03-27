@@ -16,6 +16,7 @@ import { AdminUserStatus } from '../../../models/admin';
 import { AdminApiService } from '../../../services/apis/admin-api.service';
 import { ConfigService } from '../../../services/config.service';
 import { validateFormGroup } from '../../../utils/form';
+import { AdminRoleSelectComponent } from '../admin-role-select/admin-role-select.component';
 import { AdminUserStatusSelectComponent } from '../admin-user-status-select/admin-user-status-select.component';
 
 @Component({
@@ -29,6 +30,7 @@ import { AdminUserStatusSelectComponent } from '../admin-user-status-select/admi
     NzInputModule,
     NzDividerModule,
     AdminUserStatusSelectComponent,
+    AdminRoleSelectComponent,
   ],
   templateUrl: './create-admin-user-modal.component.html',
   styleUrl: './create-admin-user-modal.component.scss',
@@ -58,6 +60,7 @@ export class CreateAdminUserModalComponent {
       name: ['', [Validators.required]],
       email: ['', []],
       phone: ['', []],
+      role_ids: [[], []],
     });
   }
 
@@ -79,6 +82,7 @@ export class CreateAdminUserModalComponent {
         email: values.email,
         phone: values.phone,
         status: values.status,
+        role_ids: values.role_ids,
       });
       this.messageService.success('创建成功');
       this.close(r);

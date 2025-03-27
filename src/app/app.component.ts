@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
     try {
       this.loading = true;
       const cfg = await this.configService.getConfig();
-      console.log(cfg);
       if (!cfg) {
         this.router.navigate(['/error'], { replaceUrl: true });
         return;

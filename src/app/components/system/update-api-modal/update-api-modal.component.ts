@@ -56,7 +56,6 @@ export class UpdateApiModalComponent {
 
   onOk() {
     const values = validateFormGroup(this.formGroup);
-    console.log(values);
     if (!values) {
       return;
     }

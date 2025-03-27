@@ -8,6 +8,8 @@ import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { AdminUserLabelComponent } from '../../../components/admin/admin-user-label/admin-user-label.component';
+import { AdminUserModalComponent } from '../../../components/admin/admin-user-modal/admin-user-modal.component';
+import { AdminUserRolesComponent } from '../../../components/admin/admin-user-roles/admin-user-roles.component';
 import { AdminUserStatusSelectComponent } from '../../../components/admin/admin-user-status-select/admin-user-status-select.component';
 import { AdminUserStatusComponent } from '../../../components/admin/admin-user-status/admin-user-status.component';
 import { CreateAdminUserModalComponent } from '../../../components/admin/create-admin-user-modal/create-admin-user-modal.component';
@@ -40,6 +42,7 @@ import { deepCopy } from '../../../utils/data';
     DatePipe,
     NzToolTipModule,
     NzModalModule,
+    AdminUserRolesComponent,
   ],
   templateUrl: './admin-user-list-page.component.html',
   styleUrl: './admin-user-list-page.component.scss',
@@ -108,5 +111,11 @@ export class AdminUserListPageComponent implements OnInit {
       });
   }
 
-  view(data: AdminUser) {}
+  view(data: AdminUser) {
+    this.modalService.create({
+      nzContent: AdminUserModalComponent,
+      nzWidth: '640px',
+      nzData: deepCopy(data),
+    });
+  }
 }

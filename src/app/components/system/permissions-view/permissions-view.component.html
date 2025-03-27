@@ -1,0 +1,12 @@
+<nz-tree [nzData]="nodes" nzMultiple [nzTreeTemplate]="nzTreeTemplate">
+  <ng-template #nzTreeTemplate let-node>
+    <label
+      nz-checkbox
+      [ngModel]="node.isChecked"
+      [nzIndeterminate]="node.origin.isHalfChecked"
+      style="pointer-events: none"
+    >
+      {{ node.title }}
+    </label>
+  </ng-template>
+</nz-tree>

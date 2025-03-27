@@ -1,0 +1,17 @@
+<nz-select
+  nzShowSearch
+  nzServerSearch
+  nzMode="multiple"
+  nzPlaceHolder="搜索"
+  [(ngModel)]="value"
+  [nzShowArrow]="false"
+  nzAllowClear
+  (nzOnSearch)="search($event)"
+  [nzLoading]="loading"
+  [nzDropdownMatchSelectWidth]="false"
+  (ngModelChange)="onChange($event)"
+>
+  @for (item of items; track item) {
+  <nz-option [nzLabel]="item.name" [nzValue]="item.id"></nz-option>
+  }
+</nz-select>

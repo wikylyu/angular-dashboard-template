@@ -1,0 +1,25 @@
+<div *nzModalTitle>角色详情</div>
+
+<nz-descriptions nzBordered [nzColumn]="2">
+  <nz-descriptions-item nzTitle="角色名" [nzSpan]="2">{{
+    data.name
+  }}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="备注" [nzSpan]="2">
+    <pre>{{ data.remark }}</pre>
+  </nz-descriptions-item>
+  <nz-descriptions-item nzTitle="创建人">
+    <app-admin-user-label [id]="data.created_by"></app-admin-user-label>
+  </nz-descriptions-item>
+  <nz-descriptions-item nzTitle="创建时间">
+    {{ data.created_at | date : "short" }}
+  </nz-descriptions-item>
+  <nz-descriptions-item nzTitle="权限" [nzSpan]="2">
+    <app-permissions-view
+      [permission_ids]="data.permission_ids"
+    ></app-permissions-view>
+  </nz-descriptions-item>
+</nz-descriptions>
+
+<div *nzModalFooter>
+  <button nz-button (click)="close()">关闭</button>
+</div>

@@ -8,7 +8,7 @@
       [loading]="loading"
     ></app-search-button>
     <ng-template #right>
-      <app-create-button></app-create-button>
+      <app-create-button (create)="update()"></app-create-button>
     </ng-template>
   </app-page-actionbar>
 

@@ -4,8 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { AdminRoleModalComponent } from '../../../components/admin/admin-role-modal/admin-role-modal.component';
 import { AdminUserLabelComponent } from '../../../components/admin/admin-user-label/admin-user-label.component';
+import { UpdateAdminRoleModalComponent } from '../../../components/admin/update-admin-role-modal/update-admin-role-modal.component';
 import { CardComponent } from '../../../components/common/card/card.component';
 import { CreateButtonComponent } from '../../../components/common/create-button/create-button.component';
 import { SearchButtonComponent } from '../../../components/common/search-button/search-button.component';
@@ -13,6 +16,7 @@ import { PageActionbarComponent } from '../../../components/layout/page-actionba
 import { PageContentComponent } from '../../../components/layout/page-content/page-content.component';
 import { AdminRole } from '../../../models/admin';
 import { AdminApiService } from '../../../services/apis/admin-api.service';
+import { deepCopy } from '../../../utils/data';
 
 @Component({
   selector: 'app-admin-role-list-page',
@@ -29,6 +33,7 @@ import { AdminApiService } from '../../../services/apis/admin-api.service';
     NzDropDownModule,
     DatePipe,
     AdminUserLabelComponent,
+    NzModalModule,
   ],
   templateUrl: './admin-role-list-page.component.html',
   styleUrl: './admin-role-list-page.component.scss',
@@ -41,7 +46,10 @@ export class AdminRoleListPageComponent implements OnInit {
   total: number = 0;
   items: AdminRole[] = [];
 
-  constructor(private adminApi: AdminApiService) {}
+  constructor(
+    private adminApi: AdminApiService,
+    private modalService: NzModalService
+  ) {}
 
   ngOnInit(): void {
     this.search();
@@ -71,7 +79,25 @@ export class AdminRoleListPageComponent implements OnInit {
     }
   }
 
-  view(data: AdminRole) {}
+  view(data: AdminRole) {
+    this.modalService.create({
+      nzContent: AdminRoleModalComponent,
+      nzWidth: '640px',
+      nzData: deepCopy(data),
+    });
+  }
 
-  update(data: AdminRole | undefined) {}
+  update(data: AdminRole | undefined = undefined) {
+    this.modalService
+      .create({
+        nzContent: UpdateAdminRoleModalComponent,
+        nzWidth: '480px',
+        nzData: deepCopy(data),
+      })
+      .afterClose.subscribe((r) => {
+        if (r) {
+          this.findAdminRoles();
+        }
+      });
+  }
 }

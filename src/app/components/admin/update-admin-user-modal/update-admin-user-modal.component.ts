@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,14 +7,16 @@ import {
   Validators,
 } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NZ_MODAL_DATA, NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
-import { AdminUser } from '../../../models/admin';
+import { AdminRole, AdminUser } from '../../../models/admin';
 import { AdminApiService } from '../../../services/apis/admin-api.service';
 import { ConfigService } from '../../../services/config.service';
 import { validateFormGroup } from '../../../utils/form';
+import { AdminRoleSelectComponent } from '../admin-role-select/admin-role-select.component';
 import { AdminUserStatusSelectComponent } from '../admin-user-status-select/admin-user-status-select.component';
 
 @Component({
@@ -27,11 +29,13 @@ import { AdminUserStatusSelectComponent } from '../admin-user-status-select/admi
     AdminUserStatusSelectComponent,
     ReactiveFormsModule,
     FormsModule,
+    NzDividerModule,
+    AdminRoleSelectComponent,
   ],
   templateUrl: './update-admin-user-modal.component.html',
   styleUrl: './update-admin-user-modal.component.scss',
 })
-export class UpdateAdminUserModalComponent {
+export class UpdateAdminUserModalComponent implements OnInit {
   formGroup: FormGroup;
   loading: boolean = false;
   constructor(
@@ -57,7 +61,20 @@ export class UpdateAdminUserModalComponent {
       name: [data.name, [Validators.required]],
       email: [data.email, []],
       phone: [data.phone, []],
+      role_ids: [[], []],
     });
+  }
+
+  ngOnInit(): void {
+    this.findAdminUserRoles();
+  }
+
+  async findAdminUserRoles() {
+    try {
+      const r = await this.adminApi.findAdminUserRoles(this.data.id);
+      const role_ids = r.map((x: AdminRole) => x.id);
+      this.formGroup.patchValue({ role_ids: role_ids });
+    } catch (error) {}
   }
 
   close(r: any = null) {
@@ -77,6 +94,7 @@ export class UpdateAdminUserModalComponent {
         email: values.email,
         phone: values.phone,
         status: values.status,
+        role_ids: values.role_ids,
       });
       this.messageService.success('更新成功');
       this.close(r);

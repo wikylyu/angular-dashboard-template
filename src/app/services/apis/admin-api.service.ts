@@ -40,6 +40,7 @@ export class AdminApiService {
     email,
     phone,
     status,
+    role_ids,
   }: {
     username: string;
     password: string;
@@ -47,6 +48,7 @@ export class AdminApiService {
     email: string;
     phone: string;
     status: AdminUserStatus;
+    role_ids: number[];
   }) {
     const url = this.buildurl(`/user`);
     return this.http.post(url, {
@@ -56,6 +58,7 @@ export class AdminApiService {
       email,
       phone,
       status,
+      role_ids,
     });
   }
 
@@ -67,16 +70,25 @@ export class AdminApiService {
       phone,
       password,
       status,
+      role_ids,
     }: {
       name: string;
       email: string;
       phone: string;
       password: string;
       status: AdminUserStatus;
+      role_ids: number[];
     }
   ) {
     const url = this.buildurl(`/user/${id}`);
-    return this.http.put(url, { name, email, phone, password, status });
+    return this.http.put(url, {
+      name,
+      email,
+      phone,
+      password,
+      status,
+      role_ids,
+    });
   }
 
   createAdminRole({
@@ -114,6 +126,16 @@ export class AdminApiService {
     page_size: number;
   }): Promise<Pagination<AdminRole>> {
     const url = this.buildurl(`/roles`, { query, page, page_size });
+    return this.http.fget(url);
+  }
+
+  findAdminUserRoles(id: number): Promise<AdminRole[]> {
+    const url = this.buildurl(`/user/${id}/roles`);
+    return this.http.fget(url);
+  }
+
+  getAdminRole(id: number) {
+    const url = this.buildurl(`/role/${id}`);
     return this.http.fget(url);
   }
 }

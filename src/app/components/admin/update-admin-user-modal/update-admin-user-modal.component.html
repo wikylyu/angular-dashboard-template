@@ -59,6 +59,12 @@
       />
     </nz-form-control>
   </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">角色</nz-form-label>
+    <nz-form-control>
+      <app-admin-role-select formControlName="role_ids"></app-admin-role-select>
+    </nz-form-control>
+  </nz-form-item>
 </form>
 
 <div *nzModalFooter>
