@@ -13,7 +13,7 @@
   <nz-descriptions-item nzTitle="邮箱">{{ data.email }}</nz-descriptions-item>
   <nz-descriptions-item nzTitle="手机号">{{ data.phone }}</nz-descriptions-item>
   <nz-descriptions-item nzTitle="角色" [nzSpan]="2">
-    <app-admin-user-roles [id]="data.id"></app-admin-user-roles>
+    <app-admin-user-roles [user]="data"></app-admin-user-roles>
   </nz-descriptions-item>
   <nz-descriptions-item nzTitle="创建人">
     <app-admin-user-label [id]="data.created_by"></app-admin-user-label>

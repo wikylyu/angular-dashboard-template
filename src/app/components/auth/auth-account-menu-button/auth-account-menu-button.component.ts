@@ -25,6 +25,12 @@ export class AuthAccountMenuButtonComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getProfile();
+
+    this.authService.checkPermissions([
+      'admin.user.create',
+      'admin.role.update',
+      'admin.test',
+    ]);
   }
 
   get profile() {

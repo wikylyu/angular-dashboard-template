@@ -14,6 +14,7 @@ import { CreateButtonComponent } from '../../../components/common/create-button/
 import { SearchButtonComponent } from '../../../components/common/search-button/search-button.component';
 import { PageActionbarComponent } from '../../../components/layout/page-actionbar/page-actionbar.component';
 import { PageContentComponent } from '../../../components/layout/page-content/page-content.component';
+import { PermsDirective } from '../../../directives/perms.directive';
 import { AdminRole } from '../../../models/admin';
 import { AdminApiService } from '../../../services/apis/admin-api.service';
 import { deepCopy } from '../../../utils/data';
@@ -34,6 +35,7 @@ import { deepCopy } from '../../../utils/data';
     DatePipe,
     AdminUserLabelComponent,
     NzModalModule,
+    PermsDirective,
   ],
   templateUrl: './admin-role-list-page.component.html',
   styleUrl: './admin-role-list-page.component.scss',

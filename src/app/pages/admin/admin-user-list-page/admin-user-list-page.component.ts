@@ -19,6 +19,7 @@ import { CreateButtonComponent } from '../../../components/common/create-button/
 import { SearchButtonComponent } from '../../../components/common/search-button/search-button.component';
 import { PageActionbarComponent } from '../../../components/layout/page-actionbar/page-actionbar.component';
 import { PageContentComponent } from '../../../components/layout/page-content/page-content.component';
+import { PermsDirective } from '../../../directives/perms.directive';
 import { AdminUser } from '../../../models/admin';
 import { AdminApiService } from '../../../services/apis/admin-api.service';
 import { deepCopy } from '../../../utils/data';
@@ -43,6 +44,7 @@ import { deepCopy } from '../../../utils/data';
     NzToolTipModule,
     NzModalModule,
     AdminUserRolesComponent,
+    PermsDirective,
   ],
   templateUrl: './admin-user-list-page.component.html',
   styleUrl: './admin-user-list-page.component.scss',

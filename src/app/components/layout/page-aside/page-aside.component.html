@@ -7,6 +7,7 @@
       [nzTitle]="menu.name"
       [nzIcon]="menu.icon"
       appSaveMenuOpenState
+      *appPerms="getAsideMenuPermissions(menu)"
     >
       <ul>
         @for (item of menu.items; track $index) {
@@ -15,6 +16,7 @@
           routerLink="/dashboard{{ menu.link }}{{ item.link }}"
           nzMatchRouter
           routerLinkActive="active"
+          *appPerms="item.permission ? [item.permission] : []"
         >
           {{ item.name }}
         </li>

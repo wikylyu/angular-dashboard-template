@@ -8,7 +8,10 @@
       [loading]="loading"
     ></app-search-button>
     <ng-template #right>
-      <app-create-button (create)="update()"></app-create-button>
+      <app-create-button
+        (create)="update()"
+        *appPerms="['admin.role.create']"
+      ></app-create-button>
     </ng-template>
   </app-page-actionbar>
 
@@ -62,7 +65,13 @@
               <ul nz-menu>
                 <li nz-menu-item (click)="view(data)">查看</li>
 
-                <li nz-menu-item (click)="update(data)">编辑</li>
+                <li
+                  nz-menu-item
+                  (click)="update(data)"
+                  *appPerms="['admin.role.update']"
+                >
+                  编辑
+                </li>
               </ul>
             </nz-dropdown-menu>
           </td>

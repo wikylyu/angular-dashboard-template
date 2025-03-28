@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { PermsDirective } from '../../../directives/perms.directive';
 import { SaveMenuOpenStateDirective } from '../../../directives/save-menu-open-state.directive';
 import { AuthService } from '../../../services/auth.service';
 
@@ -13,11 +14,13 @@ interface AsideMenu {
   link: string;
   items: AsideMenuItem[];
   is_superuser?: boolean;
+  permissions?: string[];
 }
 
 interface AsideMenuItem {
   name: string;
   link: string;
+  permission?: string;
 }
 
 @Component({
@@ -29,6 +32,7 @@ interface AsideMenuItem {
     NgClass,
     RouterModule,
     SaveMenuOpenStateDirective,
+    PermsDirective,
   ],
   templateUrl: './page-aside.component.html',
   styleUrl: './page-aside.component.scss',
@@ -51,8 +55,9 @@ export class PageAsideComponent {
         {
           name: '账号列表',
           link: '/users',
+          permission: 'admin.user.menu',
         },
-        { name: '角色管理', link: '/roles' },
+        { name: '角色管理', link: '/roles', permission: 'admin.role.menu' },
       ],
     },
     {
@@ -72,4 +77,17 @@ export class PageAsideComponent {
       ],
     },
   ];
+
+  getAsideMenuPermissions(m: AsideMenu): string[] {
+    if (m.permissions === undefined) {
+      // 防止重复检查导致重复请求
+      m.permissions = [];
+      for (const item of m.items) {
+        if (item.permission) {
+          m.permissions.push(item.permission);
+        }
+      }
+    }
+    return m.permissions;
+  }
 }

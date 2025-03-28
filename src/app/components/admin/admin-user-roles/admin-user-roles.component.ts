@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { AdminRole } from '../../../models/admin';
+import { AdminRole, AdminUser } from '../../../models/admin';
 import { AdminApiService } from '../../../services/apis/admin-api.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { AdminApiService } from '../../../services/apis/admin-api.service';
   styleUrl: './admin-user-roles.component.scss',
 })
 export class AdminUserRolesComponent implements OnChanges {
-  @Input({ required: true }) id: number = 0;
+  @Input({ required: true }) user!: AdminUser;
 
   constructor(private adminApi: AdminApiService) {}
 
@@ -22,7 +22,7 @@ export class AdminUserRolesComponent implements OnChanges {
 
   async findAdminUserRoles() {
     try {
-      this.roles = await this.adminApi.findAdminUserRoles(this.id);
+      this.roles = await this.adminApi.findAdminUserRoles(this.user.id);
     } catch (error) {}
   }
 }

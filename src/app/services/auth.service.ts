@@ -20,5 +20,33 @@ export class AuthService {
   async logout() {
     this.authApi.logout();
     this.profile.set(null);
+    this.permissions.set({});
+  }
+
+  async checkPermissions(codes: string[]): Promise<Record<string, boolean>> {
+    /* 检查权限 */
+    const permissions = this.permissions();
+    var r: Record<string, boolean> = {};
+    const uncheckedCodes: string[] = [];
+    for (const code of codes) {
+      if (code in permissions) {
+        r[code] = permissions[code]; // 已经检查过
+      } else {
+        uncheckedCodes.push(code); // 当前需要检查的权限
+      }
+    }
+    if (uncheckedCodes.length > 0) {
+      const checked = await this.authApi.checkPermissions(uncheckedCodes);
+      console.log(checked);
+      // this.permissions.update((p) => ({
+      //   ...p,
+      //   ...checked,
+      // }));
+      r = {
+        ...r,
+        ...checked,
+      };
+    }
+    return r;
   }
 }

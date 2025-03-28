@@ -19,7 +19,10 @@
     ></app-search-button>
 
     <ng-template #right>
-      <app-create-button (create)="create()"></app-create-button>
+      <app-create-button
+        (create)="create()"
+        *appPerms="['admin.user.create']"
+      ></app-create-button>
     </ng-template>
   </app-page-actionbar>
 
@@ -75,7 +78,7 @@
             ></app-admin-user-status>
           </td>
           <td>
-            <app-admin-user-roles [id]="data.id"></app-admin-user-roles>
+            <app-admin-user-roles [user]="data"></app-admin-user-roles>
           </td>
           <td>
             <app-admin-user-label [id]="data.created_by"></app-admin-user-label>
@@ -90,7 +93,13 @@
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu>
                 <li nz-menu-item (click)="view(data)">查看</li>
-                <li nz-menu-item (click)="update(data)">编辑</li>
+                <li
+                  nz-menu-item
+                  (click)="update(data)"
+                  *appPerms="['admin.user.update']"
+                >
+                  编辑
+                </li>
               </ul>
             </nz-dropdown-menu>
           </td>
