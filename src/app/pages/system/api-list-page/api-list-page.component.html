@@ -1,7 +1,10 @@
 <app-page-content [breadCrumbs]="['系统管理', 'API列表']">
   <app-page-actionbar>
     <nz-input-group nzAddOnBefore="请求方法">
-      <app-http-method-select [(ngModel)]="queryMethod"></app-http-method-select>
+      <app-http-method-select
+        [(ngModel)]="queryMethod"
+        (ngModelChange)="queryPath = ''"
+      ></app-http-method-select>
     </nz-input-group>
     <nz-input-group nzAddOnBefore="路径">
       <app-route-path-select
