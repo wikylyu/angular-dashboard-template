@@ -45,29 +45,33 @@ export const apiInterceptor: HttpInterceptorFn = (req, next) => {
       }
       return event;
     }),
-    catchError((err: HttpErrorResponse) => {
-      if (err.status === 400) {
-        message.warning('客户端错误');
-        return throwError(() => new Error('400'));
-      } else if (err.status === 500) {
-        message.warning('网络错误');
-        return throwError(() => new Error('500'));
-      } else if (err.status === 403) {
-        // 403 Forbidden
-        message.warning('没有权限访问该接口');
-        return throwError(() => new Error('403'));
-      } else if (err.status === 401) {
-        // 401 Unauthorized
-        if (!router.url.startsWith('/login')) {
-          router.navigate(['/login'], {
-            replaceUrl: true,
-            queryParams: { r: router.url },
-          });
+    catchError((err) => {
+      if (err instanceof HttpErrorResponse) {
+        if (err.status === 400) {
+          message.warning('客户端错误');
+          return throwError(() => new Error('400'));
+        } else if (err.status === 500) {
+          message.warning('网络错误');
+          return throwError(() => new Error('500'));
+        } else if (err.status === 403) {
+          // 403 Forbidden
+          message.warning('没有权限访问该接口');
+          return throwError(() => new Error('403'));
+        } else if (err.status === 401) {
+          // 401 Unauthorized
+          if (!router.url.startsWith('/login')) {
+            router.navigate(['/login'], {
+              replaceUrl: true,
+              queryParams: { r: router.url },
+            });
+          }
+          return throwError(() => new Error('401'));
+        } else {
+          message.warning('网络错误');
+          return throwError(() => err);
         }
-        return throwError(() => new Error('401'));
-      } else {
-        return throwError(() => err);
       }
+      return throwError(() => err);
     })
   );
 };

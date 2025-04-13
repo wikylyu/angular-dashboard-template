@@ -37,11 +37,6 @@ export class AuthService {
     }
     if (uncheckedCodes.length > 0) {
       const checked = await this.authApi.checkPermissions(uncheckedCodes);
-      console.log(checked);
-      // this.permissions.update((p) => ({
-      //   ...p,
-      //   ...checked,
-      // }));
       r = {
         ...r,
         ...checked,
