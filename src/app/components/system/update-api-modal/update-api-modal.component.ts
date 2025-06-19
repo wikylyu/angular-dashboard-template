@@ -116,4 +116,8 @@ export class UpdateApiModalComponent {
       this.loading = false;
     }
   }
+
+  onMethodChange(e: any) {
+    this.formGroup.patchValue({ path: '' });
+  }
 }
