@@ -1,0 +1,88 @@
+:host {
+  div.image-list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    div.add {
+      width: 100px;
+      height: 100px;
+      background-color: #eeeeee;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      span {
+        font-size: 2rem;
+        color: grey;
+      }
+    }
+    div.img {
+      width: 100px;
+      height: 100px;
+      background-color: #eeeeee;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      img {
+        object-fit: contain;
+        object-position: center;
+      }
+      div.actions {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        font-size: 1.2rem;
+        background-color: #dddddd;
+        transition: all ease-in-out 0.25s;
+        opacity: 0;
+        span {
+          cursor: pointer;
+        }
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+  input {
+    display: none;
+  }
+}
+
+div.img.cdk-drag-preview {
+  width: 100px;
+  height: 100px;
+  background-color: #eeeeee;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  img {
+    object-fit: contain;
+    object-position: center;
+  }
+  div.actions {
+    display: none;
+  }
+}
+div.img.cdk-drag-animating {
+  transition: transform ease-in-out 0.25s;
+}
+div.img.cdk-drag-placeholder {
+  opacity: 0.15;
+}
+.cdk-drop-list-dragging
+  div.img:not(.cdk-drag-placeholder):not(.cdk-drag-preview) {
+  transition: transform ease-in-out 0.25s;
+}

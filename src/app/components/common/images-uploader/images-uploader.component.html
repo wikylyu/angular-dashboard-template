@@ -1,0 +1,21 @@
+<div class="image-list" cdkDropList cdkDropListOrientation="mixed" (cdkDropListDropped)="drop($event)">
+    @for (item of values; track $index) {
+        <div class="img" cdkDrag>
+            <img [ngSrc]="item | fileurl" fill />
+            <div class="actions">
+                <span nz-icon nzType="eye" nzTheme="outline" (click)="view($index)"></span>
+                <span nz-icon nzType="delete" (click)="remove($index)"></span>
+            </div>
+        </div>
+        }
+        @if (values.length<maxSize) {
+        <div class="add" (click)="!loading && input.click()">
+            @if (loading) {
+            <span nz-icon nzType="loading" nzTheme="outline"></span>
+            }@else {
+            <span nz-icon nzType="plus" nzTheme="outline"></span>
+            }
+          </div>
+        }        
+</div>
+<input type="file" accept="image/png,image/jpeg,image/jpg,image/webp" #input (change)="onFileSelected($event)" multiple/>

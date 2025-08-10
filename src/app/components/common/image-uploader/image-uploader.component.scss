@@ -1,0 +1,33 @@
+:host {
+  nz-spin {
+    width: fit-content;
+    height: fit-content;
+    div.img {
+      background-color: #eeeeee;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      img {
+        object-fit: contain;
+        object-position: center;
+      }
+      span {
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        cursor: pointer;
+        opacity: 0;
+        transition: all ease-in-out 0.25s;
+      }
+      &:hover {
+        span {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  input {
+    display: none;
+  }
+}

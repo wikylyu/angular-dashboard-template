@@ -1,0 +1,15 @@
+<div *nzModalTitle>裁剪图片</div>
+
+<image-cropper
+  #cropper
+  [imageFile]="data.file"
+  [aspectRatio]="data.aspectRatio ?? 0"
+  [cropperMinWidth]="data.minWidth ?? 0"
+  [cropperMinHeight]="data.minHeight ?? 0"
+  format="png"
+></image-cropper>
+
+<div *nzModalFooter>
+  <button nz-button (click)="close()">取消</button>
+  <button nz-button nzType="primary" (click)="onOk()">裁剪</button>
+</div>

@@ -1,0 +1,14 @@
+<nz-spin [nzSpinning]="loading">
+  <div
+    class="img"
+    (click)="click()"
+    [ngStyle]="{ width: width + 'px', height: height + 'px' }"
+  >
+    @if (value) {
+    <img [ngSrc]="value | fileurl" fill />
+    <span nz-icon nzType="close" (click)="clear($event)"></span>
+    }
+  </div>
+</nz-spin>
+
+<input type="file" accept="image/*" #input (change)="onFileSelected($event)" />
