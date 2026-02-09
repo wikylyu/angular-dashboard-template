@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDropdownModule } from 'ng-zorro-antd/dropdown';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { AuthApiService } from '../../../services/apis/auth-api.service';
@@ -11,7 +11,7 @@ import { UpdateAuthProfileModalComponent } from '../update-auth-profile-modal/up
 
 @Component({
   selector: 'app-auth-account-menu-button',
-  imports: [NzAvatarModule, NzMenuModule, NzDropDownModule, NzModalModule],
+  imports: [NzAvatarModule, NzMenuModule, NzDropdownModule, NzModalModule],
   templateUrl: './auth-account-menu-button.component.html',
   styleUrl: './auth-account-menu-button.component.scss',
 })
@@ -20,7 +20,7 @@ export class AuthAccountMenuButtonComponent implements OnInit {
     private authService: AuthService,
     private authApi: AuthApiService,
     private modalService: NzModalService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {

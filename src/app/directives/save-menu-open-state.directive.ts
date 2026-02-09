@@ -25,7 +25,7 @@ export class SaveMenuOpenStateDirective implements OnInit {
 
   // 监听 nzOpen 变化
   @HostListener('nzOpenChange', ['$event'])
-  onOpenChange(open: boolean) {
+  onOpenChange(open: Event) {
     if (!this.key) {
       return;
     }

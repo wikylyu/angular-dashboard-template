@@ -1,12 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDropdownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTooltipModule } from 'ng-zorro-antd/tooltip';
 import { AdminUserLabelComponent } from '../../../components/admin/admin-user-label/admin-user-label.component';
 import { AdminUserModalComponent } from '../../../components/admin/admin-user-modal/admin-user-modal.component';
 import { AdminUserRolesComponent } from '../../../components/admin/admin-user-roles/admin-user-roles.component';
@@ -36,12 +36,12 @@ import { deepCopy } from '../../../utils/data';
     AdminUserStatusSelectComponent,
     CardComponent,
     NzIconModule,
-    NzDropDownModule,
+    NzDropdownModule,
     NzTableModule,
     AdminUserLabelComponent,
     AdminUserStatusComponent,
     DatePipe,
-    NzToolTipModule,
+    NzTooltipModule,
     NzModalModule,
     AdminUserRolesComponent,
     PermsDirective,
@@ -59,7 +59,7 @@ export class AdminUserListPageComponent implements OnInit {
   loading: boolean = false;
   constructor(
     private adminApi: AdminApiService,
-    private modalService: NzModalService
+    private modalService: NzModalService,
   ) {}
 
   ngOnInit(): void {

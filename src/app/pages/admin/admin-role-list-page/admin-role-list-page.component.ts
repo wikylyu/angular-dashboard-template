@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDropdownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
@@ -31,7 +31,7 @@ import { deepCopy } from '../../../utils/data';
     CardComponent,
     NzTableModule,
     NzIconModule,
-    NzDropDownModule,
+    NzDropdownModule,
     DatePipe,
     AdminUserLabelComponent,
     NzModalModule,
@@ -50,7 +50,7 @@ export class AdminRoleListPageComponent implements OnInit {
 
   constructor(
     private adminApi: AdminApiService,
-    private modalService: NzModalService
+    private modalService: NzModalService,
   ) {}
 
   ngOnInit(): void {

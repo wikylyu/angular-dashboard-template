@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import {
   NzContextMenuService,
   NzDropdownMenuComponent,
-  NzDropDownModule,
+  NzDropdownModule,
 } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -29,7 +29,7 @@ import { deepCopy } from '../../../utils/data';
     CreateButtonComponent,
     NzModalModule,
     NzTreeModule,
-    NzDropDownModule,
+    NzDropdownModule,
     NzIconModule,
     CardComponent,
   ],
@@ -42,7 +42,7 @@ export class PermissionsPageComponent {
     private systemApi: SystemApiService,
     private modalService: NzModalService,
     private nzContextMenuService: NzContextMenuService,
-    private messageService: NzMessageService
+    private messageService: NzMessageService,
   ) {}
 
   ngOnInit(): void {

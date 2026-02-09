@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDropdownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
@@ -41,7 +41,7 @@ import { deepCopy } from '../../../utils/data';
     NzTableModule,
     DatePipe,
     PermissionLabelComponent,
-    NzDropDownModule,
+    NzDropdownModule,
     HttpMethodComponent,
     NzIconModule,
     AdminUserLabelComponent,
@@ -60,7 +60,7 @@ export class ApiListPageComponent implements OnInit {
 
   constructor(
     private systemApi: SystemApiService,
-    private modalService: NzModalService
+    private modalService: NzModalService,
   ) {}
 
   ngOnInit(): void {
